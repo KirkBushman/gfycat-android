@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SampleApp</string>
+
+    <string name="bttn_visualize_token">Visualize Token</string>
+    <string name="bttn_get_gfycats">Get Gfycat</string>
+    <string name="bttn_trending_gfycats">Trending Gfycat</string>
+
+    <string name="no_items">No items to show.</string>
 </resources>

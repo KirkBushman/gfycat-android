@@ -1,11 +1,11 @@
 package com.kirkbushman.gfycat
 
-import com.kirkbushman.gfycat.auth.Token
+import com.kirkbushman.gfycat.auth.TokenBearer
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.gfycat.models.User
 import com.kirkbushman.gfycat.utils.Utils.getRetrofit
 
-class GfycatClient(private val token: Token, logging: Boolean) {
+class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
 
     private val retrofit = getRetrofit(logging)
     private val api = retrofit.create(GfycatApi::class.java)
@@ -36,7 +36,25 @@ class GfycatClient(private val token: Token, logging: Boolean) {
         return res.body()
     }
 
+    fun trendingGfycat(tagName: String? = null, count: Int? = null, cursor: String? = null): List<Gfycat>? {
+
+        val authMap = getHeaderMap()
+        val req = api.trendingGfycat(
+            tagName = tagName,
+            count = count,
+            cursor = cursor,
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.gfycats
+    }
+
     private fun getHeaderMap(): HashMap<String, String> {
-        return hashMapOf("Authorization" to "bearer ".plus(token.accessToken))
+        return hashMapOf("Authorization" to "bearer ".plus(bearer.getRawAccessToken()))
     }
 }

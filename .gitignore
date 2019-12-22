@@ -83,3 +83,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# credentials xml file
+sampleapp/src/main/res/xml/credentials.xml
+/sampleapp/src/main/res/xml/credentials.xml
