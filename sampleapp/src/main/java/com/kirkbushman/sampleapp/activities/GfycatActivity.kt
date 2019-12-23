@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.sampleapp.R
+import kotlinx.android.synthetic.main.activity_gfycat.*
 
 class GfycatActivity : AppCompatActivity() {
 
@@ -27,6 +28,6 @@ class GfycatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gfycat)
 
-
+        gfycat_text.text = gfycat.toString()
     }
 }

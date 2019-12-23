@@ -1,6 +1,7 @@
 package com.kirkbushman.gfycat.models
 
 import android.os.Parcelable
+import com.kirkbushman.gfycat.models.http.ContentUrls
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -17,6 +18,15 @@ data class Gfycat(
 
     @Json(name = "gfyNumber")
     val gfyNumber: String,
+
+    @Json(name = "title")
+    val title: String,
+
+    @Json(name = "description")
+    val description: String,
+
+    @Json(name = "avgColor")
+    val avgColor: String,
 
     @Json(name = "webmUrl")
     val webmUrl: String,
@@ -54,11 +64,17 @@ data class Gfycat(
     @Json(name = "gif100px")
     val gif100px: String,
 
+    @Json(name = "url")
+    val url: String?,
+
     @Json(name = "width")
     val width: Int,
 
     @Json(name = "height")
     val height: Int,
+
+    @Json(name = "content_urls")
+    val contentUrls: ContentUrls,
 
     @Json(name = "frameRate")
     val frameRate: Float,
@@ -78,11 +94,26 @@ data class Gfycat(
     @Json(name = "nsfw")
     val nsfw: String,
 
+    @Json(name = "hasAudio")
+    val hasAudio: Boolean,
+
+    @Json(name = "hasTransparency")
+    val hasTransparency: Boolean,
+
     @Json(name = "likes")
     val likes: Int,
 
     @Json(name = "dislikes")
     val dislikes: Int,
+
+    @Json(name = "userName")
+    val userName: String,
+
+    @Json(name = "userDisplayName")
+    val userDisplayName: String?,
+
+    @Json(name = "userProfileImageUrl")
+    val userProfileImageUrl: String?,
 
     @Json(name = "published")
     val published: Short,
@@ -91,6 +122,9 @@ data class Gfycat(
     val source: Int,
 
     @Json(name = "views")
-    val views: Int
+    val views: Int,
+
+    @Json(name = "tags")
+    val tags: List<String>
 
 ) : Parcelable

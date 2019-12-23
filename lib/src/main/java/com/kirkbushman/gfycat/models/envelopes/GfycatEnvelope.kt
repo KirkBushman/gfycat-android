@@ -8,15 +8,9 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class GfycatsEnvelope(
+data class GfycatEnvelope(
 
-    @Json(name = "gfycats")
-    val gfycats: List<Gfycat>,
-
-    @Json(name = "cursor")
-    val cursor: String?,
-
-    @Json(name = "found")
-    val count: Int?
+    @Json(name = "gfyItem")
+    val gfyItem: Gfycat
 
 ) : Parcelable

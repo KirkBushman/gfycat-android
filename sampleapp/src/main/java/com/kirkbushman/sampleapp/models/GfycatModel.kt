@@ -21,8 +21,8 @@ abstract class GfycatModel : EpoxyModelWithHolder<GfycatHolder>() {
     override fun bind(holder: GfycatHolder) {
 
         holder.gfyId.text = gfycat.gfyId
-        holder.gfyName.text = gfycat.gfyName
-        holder.gfyNumber.text = gfycat.gfyNumber
+        holder.gfyTitle.text = gfycat.title
+        holder.gfyAuthor.text = gfycat.userName
 
         holder.container.setOnClickListener(listener)
     }
@@ -36,7 +36,6 @@ class GfycatHolder : KotlinHolder() {
 
     val container by bind<LinearLayout>(R.id.container)
     val gfyId by bind<TextView>(R.id.gfycat_id)
-    val gfyName by bind<TextView>(R.id.gfycat_name)
-    val gfyNumber by bind<TextView>(R.id.gfycat_number)
+    val gfyTitle by bind<TextView>(R.id.gfycat_title)
+    val gfyAuthor by bind<TextView>(R.id.gfycat_author)
 }
-

@@ -23,6 +23,24 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()
     }
 
+    fun userFeed(userId: String, count: Int? = null, cursor: String? = null): List<Gfycat>? {
+
+        val authMap = getHeaderMap()
+        val req = api.userFeed(
+            userId = userId,
+            count = count,
+            cursor = cursor,
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.gfycats
+    }
+
     fun gfycat(id: String): Gfycat? {
 
         val authMap = getHeaderMap()
@@ -33,7 +51,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
             return null
         }
 
-        return res.body()
+        return res.body()?.gfyItem
     }
 
     fun trendingGfycat(tagName: String? = null, count: Int? = null, cursor: String? = null): List<Gfycat>? {
@@ -52,6 +70,21 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         return res.body()?.gfycats
+    }
+
+    fun trendingTags(): List<String>? {
+
+        val authMap = getHeaderMap()
+        val req = api.trendingTags(
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
     }
 
     private fun getHeaderMap(): HashMap<String, String> {

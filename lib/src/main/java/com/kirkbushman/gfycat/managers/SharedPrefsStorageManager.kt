@@ -47,7 +47,7 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
         val tokenType = prefs.getString(LAST_TOKEN_TYPE, "") as String
         val expiresInMins = prefs.getInt(LAST_EXPIRES_IN_MINS, 0)
         val scope = prefs.getString(LAST_SCOPE, "") as String
-        val createdTime = prefs.getLong(LAST_CREATED_TIME, 0L) as Long
+        val createdTime = prefs.getLong(LAST_CREATED_TIME, 0L)
 
         return Token(
             accessToken = accessToken,

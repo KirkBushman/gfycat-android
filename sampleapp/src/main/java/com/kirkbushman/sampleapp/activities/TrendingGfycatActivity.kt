@@ -22,12 +22,16 @@ class TrendingGfycatActivity : AppCompatActivity() {
         }
     }
 
+    private val items = ArrayList<Gfycat>()
+
     private val client by lazy { GfycatApplication.instance?.getClient() }
     private val controller by lazy {
         GfycatController(object : OnClickCallback {
 
             override fun onClick(position: Int) {
+                val item = items[position]
 
+                GfycatActivity.start(this@TrendingGfycatActivity, item)
             }
         })
     }
@@ -39,9 +43,7 @@ class TrendingGfycatActivity : AppCompatActivity() {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        val items = ArrayList<Gfycat>()
-
-        doAsync(doWork = { items.addAll(client?.trendingGfycat(count = 10) ?: listOf()) }, onPost = {
+        doAsync(doWork = { items.addAll(client?.trendingGfycat(count = 30) ?: listOf()) }, onPost = {
 
             controller.setItems(items)
         })
