@@ -42,11 +42,35 @@
             />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttn_get_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/bttn_get_user"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttn_get_user_feed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/bttn_get_user_feed"
+            />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bttn_trenting_gfycats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/bttn_trending_gfycats"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttn_trenting_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/bttn_trending_tags"
             />
 
     </LinearLayout>

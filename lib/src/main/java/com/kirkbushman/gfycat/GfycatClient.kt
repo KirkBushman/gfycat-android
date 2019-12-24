@@ -2,6 +2,7 @@ package com.kirkbushman.gfycat
 
 import com.kirkbushman.gfycat.auth.TokenBearer
 import com.kirkbushman.gfycat.models.Gfycat
+import com.kirkbushman.gfycat.models.Me
 import com.kirkbushman.gfycat.models.User
 import com.kirkbushman.gfycat.utils.Utils.getRetrofit
 
@@ -10,10 +11,23 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
     private val retrofit = getRetrofit(logging)
     private val api = retrofit.create(GfycatApi::class.java)
 
-    fun me(): User? {
+    fun me(): Me? {
 
         val authMap = getHeaderMap()
         val req = api.me(authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun user(userId: String): User? {
+
+        val authMap = getHeaderMap()
+        val req = api.user(userId, header = authMap)
         val res = req.execute()
 
         if (!res.isSuccessful) {
@@ -72,10 +86,13 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.gfycats
     }
 
-    fun trendingTags(): List<String>? {
+    fun trendingTags(tagCount: Int? = null, gfyCount: Int? = null, cursor: String? = null): List<String>? {
 
         val authMap = getHeaderMap()
         val req = api.trendingTags(
+            tagCount = tagCount,
+            gfyCount = gfyCount,
+            cursor = cursor,
             header = authMap
         )
 

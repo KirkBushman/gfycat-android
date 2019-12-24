@@ -1,6 +1,7 @@
 package com.kirkbushman.gfycat
 
 import com.kirkbushman.gfycat.auth.Token
+import com.kirkbushman.gfycat.models.Me
 import com.kirkbushman.gfycat.models.User
 import com.kirkbushman.gfycat.models.envelopes.GfycatEnvelope
 import com.kirkbushman.gfycat.models.envelopes.GfycatsEnvelope
@@ -15,6 +16,12 @@ interface GfycatApi {
 
     @GET("/me")
     fun me(
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Me>
+
+    @GET("/v1/users/{userId}")
+    fun user(
+        @Path("userId") userId: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<User>
 

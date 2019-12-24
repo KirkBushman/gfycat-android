@@ -26,8 +26,11 @@
 
         <activity android:name=".activities.VisualizeTokenActivity" />
         <activity android:name=".activities.GetGfycatActivity" />
+        <activity android:name=".activities.GetUserActivity" />
+        <activity android:name=".activities.GetUserFeedActivity" />
         <activity android:name=".activities.GfycatActivity" />
         <activity android:name=".activities.TrendingGfycatActivity" />
+        <activity android:name=".activities.TrendingTagsActivity" />
 
     </application>
 </manifest>
