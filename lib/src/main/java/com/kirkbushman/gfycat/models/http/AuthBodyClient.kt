@@ -6,10 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class AuthRequestBody(
+data class AuthBodyClient(
 
     val client_id: String,
     val client_secret: String,
-
-    val grant_type: String = "client_credentials"
+    val grant_type: String
 ) : Parcelable

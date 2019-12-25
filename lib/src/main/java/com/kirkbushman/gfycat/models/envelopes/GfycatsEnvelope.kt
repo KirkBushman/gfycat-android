@@ -17,6 +17,9 @@ data class GfycatsEnvelope(
     val cursor: String?,
 
     @Json(name = "found")
-    val count: Int?
+    val count: Int?,
+
+    @Json(name = "related")
+    val related: List<String>?
 
 ) : Parcelable

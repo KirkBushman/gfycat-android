@@ -64,6 +64,12 @@ data class Gfycat(
     @Json(name = "gif100px")
     val gif100px: String,
 
+    @Json(name = "mp4Url")
+    val mp4Url: String,
+
+    @Json(name = "webpUrl")
+    val webpUrl: String,
+
     @Json(name = "url")
     val url: String?,
 
@@ -106,6 +112,9 @@ data class Gfycat(
     @Json(name = "dislikes")
     val dislikes: Int,
 
+    @Json(name = "rating")
+    val rating: String?,
+
     @Json(name = "userName")
     val userName: String,
 
@@ -125,6 +134,6 @@ data class Gfycat(
     val views: Int,
 
     @Json(name = "tags")
-    val tags: List<String>
+    val tags: List<String>?
 
 ) : Parcelable

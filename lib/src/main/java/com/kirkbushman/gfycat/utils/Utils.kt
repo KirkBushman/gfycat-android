@@ -1,5 +1,6 @@
 package com.kirkbushman.gfycat.utils
 
+import android.net.Uri
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,7 +11,7 @@ object Utils {
 
     private const val BASE_URL = "https://api.gfycat.com"
 
-    fun getRetrofit(logging: Boolean): Retrofit {
+    fun buildRetrofit(logging: Boolean): Retrofit {
 
         val moshi = Moshi.Builder().build()
         val moshiFactory = MoshiConverterFactory.create(moshi)
@@ -36,5 +37,9 @@ object Utils {
             .addConverterFactory(moshiFactory)
             .client(httpClient)
             .build()
+    }
+
+    fun getGfyIdFromUrl(uri: Uri): String {
+        return uri.pathSegments.last()
     }
 }

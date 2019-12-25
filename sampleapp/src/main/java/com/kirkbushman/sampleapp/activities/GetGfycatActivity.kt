@@ -31,6 +31,7 @@ class GetGfycatActivity : AppCompatActivity() {
             val gfyId = query.text.toString()
             var gfycat: Gfycat? = null
 
+            // doAsync(doWork = { gfycat = client?.gfycatFromUrl(gfyId.toUri()) }, onPost = {
             doAsync(doWork = { gfycat = client?.gfycat(gfyId) }, onPost = {
 
                 gfycat_text.text = gfycat.toString()

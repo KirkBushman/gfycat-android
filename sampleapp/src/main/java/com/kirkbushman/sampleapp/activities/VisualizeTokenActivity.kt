@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.GfycatApplication
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_visualize_token.*
 
 class VisualizeTokenActivity : AppCompatActivity() {
@@ -23,6 +24,14 @@ class VisualizeTokenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_visualize_token)
+
+        token_refresh.setOnClickListener {
+
+            doAsync(doWork = { bearer?.renewToken() }, onPost = {
+
+                token_text.text = bearer.toString()
+            })
+        }
 
         token_text.text = bearer.toString()
     }

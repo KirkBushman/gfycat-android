@@ -1,6 +1,8 @@
 package com.kirkbushman.gfycat.auth
 
+import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.managers.StorageManager
+import com.kirkbushman.gfycat.models.http.AuthBodyRenew
 
 data class TokenBearer(
 
@@ -35,5 +37,31 @@ data class TokenBearer(
         return token?.shouldRenew() ?: false
     }
 
-    fun renewToken() {}
+    fun renewToken() {
+
+        if (token == null || token?.refreshToken == null) {
+            return
+        }
+
+        val api = GfycatClient.getApi()
+        val req = api.refreshToken(
+            AuthBodyRenew(
+                client_id = credentials.clientId,
+                client_secret = credentials.clientSecret,
+                refresh_token = token?.refreshToken ?: "",
+                grant_type = "refresh"
+            )
+        )
+
+        val res = req.execute()
+        val token = res.body()
+
+        if (!res.isSuccessful || token == null) {
+            throw IllegalStateException("Error during token renewal")
+        }
+
+        this.token = token
+
+        storManager.saveToken(token)
+    }
 }

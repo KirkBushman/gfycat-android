@@ -1,7 +1,8 @@
 package com.kirkbushman.gfycat.auth
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+interface Credentials {
 
-@Parcelize
-data class Credentials(val clientId: String, val clientSecret: String) : Parcelable
+    val clientId: String
+    val clientSecret: String
+    val grantType: String
+}

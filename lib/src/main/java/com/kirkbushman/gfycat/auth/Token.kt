@@ -16,19 +16,31 @@ data class Token(
     @Json(name = "scope")
     val scope: String,
 
-    @Json(name = "expires_in")
-    val expiresInMins: Int,
+    @Json(name = "resource_owner")
+    val resourceOwner: String?,
+
+    @Json(name = "refresh_token")
+    val refreshToken: String?,
+
+    @Json(name = "refresh_token_expires_in")
+    val refreshTokenExpiresIn: Int?,
 
     @Json(name = "access_token")
     val accessToken: String,
 
+    @Json(name = "expires_in")
+    val expiresIn: Int,
+
     @Transient
-    val createdTime: Long = System.currentTimeMillis()
+    val createdTime: Long = (System.currentTimeMillis() / 1000L)
 
 ) : Parcelable {
 
     @IgnoredOnParcel
-    val expirationTime by lazy { createdTime + expiresInMins }
+    val expirationTime by lazy { createdTime + expiresIn }
+
+    @IgnoredOnParcel
+    val expirationTimeRefresh by lazy { if (refreshTokenExpiresIn == null) null else createdTime + refreshTokenExpiresIn }
 
     /**
      * The token should last an hour,

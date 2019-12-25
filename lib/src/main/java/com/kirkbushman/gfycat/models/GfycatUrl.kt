@@ -10,10 +10,10 @@ import kotlinx.android.parcel.Parcelize
 data class GfycatUrl(
 
     @Json(name = "url")
-    val url: String,
+    val url: String?,
 
     @Json(name = "size")
-    val size: Long,
+    val size: Long?,
 
     @Json(name = "width")
     val width: Int,

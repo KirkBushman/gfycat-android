@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
             GetGfycatActivity.start(this)
         }
 
+        bttn_self.setOnClickListener {
+
+            SelfActivity.start(this)
+        }
+
         bttn_get_user.setOnClickListener {
 
             GetUserActivity.start(this)
@@ -32,6 +37,16 @@ class MainActivity : AppCompatActivity() {
         bttn_get_user_feed.setOnClickListener {
 
             GetUserFeedActivity.start(this)
+        }
+
+        bttn_stickers.setOnClickListener {
+
+            StickersActivity.start(this)
+        }
+
+        bttn_stickers_search.setOnClickListener {
+
+            SearchStickersActivity.start(this)
         }
 
         bttn_trenting_gfycats.setOnClickListener {

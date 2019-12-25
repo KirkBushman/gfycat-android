@@ -26,15 +26,15 @@ data class ContentUrls(
     val largeGif: GfycatUrl,
 
     @Json(name = "webp")
-    val webp: GfycatUrl,
+    val webp: GfycatUrl?,
 
     @Json(name = "webm")
-    val webm: GfycatUrl,
+    val webm: GfycatUrl?,
 
     @Json(name = "mp4")
-    val mp4: GfycatUrl,
+    val mp4: GfycatUrl?,
 
     @Json(name = "mobile")
-    val mobile: GfycatUrl
+    val mobile: GfycatUrl?
 
 ) : Parcelable

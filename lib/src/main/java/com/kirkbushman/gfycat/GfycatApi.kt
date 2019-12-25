@@ -5,16 +5,24 @@ import com.kirkbushman.gfycat.models.Me
 import com.kirkbushman.gfycat.models.User
 import com.kirkbushman.gfycat.models.envelopes.GfycatEnvelope
 import com.kirkbushman.gfycat.models.envelopes.GfycatsEnvelope
-import com.kirkbushman.gfycat.models.http.AuthRequestBody
+import com.kirkbushman.gfycat.models.http.AuthBodyClient
+import com.kirkbushman.gfycat.models.http.AuthBodyPassword
+import com.kirkbushman.gfycat.models.http.AuthBodyRenew
 import retrofit2.Call
 import retrofit2.http.*
 
 interface GfycatApi {
 
     @POST("/v1/oauth/token")
-    fun getAuthToken(@Body request: AuthRequestBody): Call<Token>
+    fun getAuthToken(@Body request: AuthBodyClient): Call<Token>
 
-    @GET("/me")
+    @POST("/v1/oauth/token")
+    fun getAuthToken(@Body request: AuthBodyPassword): Call<Token>
+
+    @POST("/v1/oauth/token")
+    fun refreshToken(@Body request: AuthBodyRenew): Call<Token>
+
+    @GET("/v1/me")
     fun me(
         @HeaderMap header: HashMap<String, String>
     ): Call<Me>
@@ -38,6 +46,21 @@ interface GfycatApi {
         @Path("gfyid") gfyId: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<GfycatEnvelope>
+
+    @GET("/v1/stickers")
+    fun stickers(
+        @Query("count") count: Int? = null,
+        @Query("cursor") cursor: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<GfycatsEnvelope>
+
+    @GET("/v1/stickers/search")
+    fun stickersSearch(
+        @Query("search_text") searchText: String,
+        @Query("count") count: Int? = null,
+        @Query("cursor") cursor: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<GfycatsEnvelope>
 
     @GET("/v1/gfycats/trending")
     fun trendingGfycat(
