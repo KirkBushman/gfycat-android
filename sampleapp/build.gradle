@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.kirkbushman.sampleapp"
@@ -46,7 +46,7 @@ dependencies {
     implementation "com.google.android.material:material:$mdc_ver"
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation "androidx.core:core-ktx:$ktx_ver"
 
     implementation "com.airbnb.android:epoxy:$epoxy_ver"
     kapt "com.airbnb.android:epoxy-processor:$epoxy_ver"

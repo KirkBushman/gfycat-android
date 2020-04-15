@@ -12,7 +12,7 @@ import com.kirkbushman.sampleapp.controllers.OnClickCallback
 import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_stickers_search.*
 
-class SearchStickersActivity : AppCompatActivity() {
+class SearchStickersActivity : AppCompatActivity(R.layout.activity_stickers_search) {
 
     companion object {
 
@@ -38,7 +38,6 @@ class SearchStickersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stickers_search)
 
         list.setHasFixedSize(true)
         list.setController(controller)

@@ -7,10 +7,14 @@
     <string name="bttn_refresh_token">Refresh Token</string>
     <string name="bttn_get_gfycats">Get Gfycat</string>
     <string name="bttn_self">Self User</string>
+    <string name="bttn_following">Following</string>
+    <string name="bttn_followers">Followers</string>
     <string name="bttn_get_user">Get User</string>
     <string name="bttn_get_user_feed">Get User Feed</string>
     <string name="bttn_stickers">Stickers</string>
     <string name="bttn_stickers_search">Stickers Search</string>
+    <string name="bttn_reactions">Reactions</string>
+    <string name="bttn_reaction_search">Reaction Search</string>
     <string name="bttn_trending_gfycats">Trending Gfycat</string>
     <string name="bttn_trending_tags">Trending Tags</string>
     <string name="bttn_ok">OK</string>

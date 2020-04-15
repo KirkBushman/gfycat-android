@@ -11,7 +11,7 @@ import com.kirkbushman.sampleapp.controllers.TagsController
 import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_trending_tags.*
 
-class TrendingTagsActivity : AppCompatActivity() {
+class TrendingTagsActivity : AppCompatActivity(R.layout.activity_trending_tags) {
 
     companion object {
 
@@ -33,7 +33,6 @@ class TrendingTagsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trending_tags)
 
         list.setHasFixedSize(true)
         list.setController(controller)

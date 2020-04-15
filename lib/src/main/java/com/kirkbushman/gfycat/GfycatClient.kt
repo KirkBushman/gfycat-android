@@ -2,9 +2,7 @@ package com.kirkbushman.gfycat
 
 import android.net.Uri
 import com.kirkbushman.gfycat.auth.TokenBearer
-import com.kirkbushman.gfycat.models.Gfycat
-import com.kirkbushman.gfycat.models.Me
-import com.kirkbushman.gfycat.models.User
+import com.kirkbushman.gfycat.models.*
 import com.kirkbushman.gfycat.utils.Utils.buildRetrofit
 import com.kirkbushman.gfycat.utils.Utils.getGfyIdFromUrl
 import retrofit2.Retrofit
@@ -49,6 +47,32 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
 
         val authMap = getHeaderMap()
         val req = api.me(authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun following(): Following? {
+
+        val authMap = getHeaderMap()
+        val req = api.following(authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun followers(): Followers? {
+
+        val authMap = getHeaderMap()
+        val req = api.followers(authMap)
         val res = req.execute()
 
         if (!res.isSuccessful) {
@@ -150,6 +174,43 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         return res.body()?.gfycats
+    }
+
+    fun reactionGfycats(gfyCount: Int? = null, locale: Locale? = null, cursor: String? = null): ReactionTags? {
+
+        val authMap = getHeaderMap()
+        val req = api.reactionGfycats(
+            gfyCount = gfyCount,
+            locale = locale?.valueStr,
+            cursor = cursor,
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun reactionGfycat(tagName: String, gfyCount: Int? = null, locale: Locale? = null, cursor: String? = null): Tag? {
+
+        val authMap = getHeaderMap()
+        val req = api.reactionGfycat(
+            tagName = tagName,
+            gfyCount = gfyCount,
+            locale = locale?.valueStr,
+            cursor = cursor,
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
     }
 
     fun trendingGfycat(tagName: String? = null, count: Int? = null, cursor: String? = null): List<Gfycat>? {

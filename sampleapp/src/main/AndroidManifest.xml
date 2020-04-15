@@ -27,11 +27,15 @@
         <activity android:name=".activities.VisualizeTokenActivity" />
         <activity android:name=".activities.GetGfycatActivity" />
         <activity android:name=".activities.SelfActivity" />
+        <activity android:name=".activities.FollowingActivity" />
+        <activity android:name=".activities.FollowersActivity" />
         <activity android:name=".activities.GetUserActivity" />
         <activity android:name=".activities.GetUserFeedActivity" />
         <activity android:name=".activities.GfycatActivity" />
         <activity android:name=".activities.StickersActivity" />
         <activity android:name=".activities.SearchStickersActivity" />
+        <activity android:name=".activities.ReactionsActivity" />
+        <activity android:name=".activities.ReactionSearchActivity" />
         <activity android:name=".activities.TrendingGfycatActivity" />
         <activity android:name=".activities.TrendingTagsActivity" />
 

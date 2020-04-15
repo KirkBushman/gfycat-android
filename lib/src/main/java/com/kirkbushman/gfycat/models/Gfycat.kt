@@ -112,6 +112,9 @@ data class Gfycat(
     @Json(name = "dislikes")
     val dislikes: Int,
 
+    @Json(name = "gatekeeper")
+    val gatekeeper: Int,
+
     @Json(name = "rating")
     val rating: String?,
 
@@ -124,6 +127,9 @@ data class Gfycat(
     @Json(name = "userProfileImageUrl")
     val userProfileImageUrl: String?,
 
+    @Json(name = "extraLemmas")
+    val extraLemmas: String,
+
     @Json(name = "published")
     val published: Short,
 
@@ -134,6 +140,9 @@ data class Gfycat(
     val views: Int,
 
     @Json(name = "tags")
-    val tags: List<String>?
+    val tags: List<String>?,
+
+    @Json(name = "languageCategories")
+    val languageCategories: List<String>?
 
 ) : Parcelable

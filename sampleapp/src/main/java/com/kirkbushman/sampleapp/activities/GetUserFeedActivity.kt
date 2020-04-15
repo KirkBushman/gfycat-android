@@ -13,7 +13,7 @@ import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_get_user_feed.*
 import kotlinx.android.synthetic.main.activity_get_user_feed.list
 
-class GetUserFeedActivity : AppCompatActivity() {
+class GetUserFeedActivity : AppCompatActivity(R.layout.activity_get_user_feed) {
 
     companion object {
 
@@ -39,7 +39,6 @@ class GetUserFeedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_get_user_feed)
 
         list.setHasFixedSize(true)
         list.setController(controller)

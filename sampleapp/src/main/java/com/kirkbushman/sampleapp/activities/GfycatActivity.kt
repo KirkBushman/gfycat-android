@@ -8,7 +8,7 @@ import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.sampleapp.R
 import kotlinx.android.synthetic.main.activity_gfycat.*
 
-class GfycatActivity : AppCompatActivity() {
+class GfycatActivity : AppCompatActivity(R.layout.activity_gfycat) {
 
     companion object {
 
@@ -26,7 +26,6 @@ class GfycatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gfycat)
 
         gfycat_text.text = gfycat.toString()
     }

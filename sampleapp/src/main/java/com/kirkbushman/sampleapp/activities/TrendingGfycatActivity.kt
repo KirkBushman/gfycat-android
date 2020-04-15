@@ -12,7 +12,7 @@ import com.kirkbushman.sampleapp.controllers.OnClickCallback
 import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_trending_gfycat.*
 
-class TrendingGfycatActivity : AppCompatActivity() {
+class TrendingGfycatActivity : AppCompatActivity(R.layout.activity_trending_gfycat) {
 
     companion object {
 
@@ -38,7 +38,6 @@ class TrendingGfycatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trending_gfycat)
 
         list.setHasFixedSize(true)
         list.setController(controller)

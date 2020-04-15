@@ -12,7 +12,7 @@ import com.kirkbushman.sampleapp.controllers.OnClickCallback
 import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_stickers.*
 
-class StickersActivity : AppCompatActivity() {
+class StickersActivity : AppCompatActivity(R.layout.activity_stickers) {
 
     companion object {
 
@@ -38,7 +38,6 @@ class StickersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stickers)
 
         list.setHasFixedSize(true)
         list.setController(controller)

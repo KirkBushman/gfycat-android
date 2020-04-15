@@ -29,6 +29,16 @@ class MainActivity : AppCompatActivity() {
             SelfActivity.start(this)
         }
 
+        bttn_following.setOnClickListener {
+
+            FollowingActivity.start(this)
+        }
+
+        bttn_followers.setOnClickListener {
+
+            FollowersActivity.start(this)
+        }
+
         bttn_get_user.setOnClickListener {
 
             GetUserActivity.start(this)
@@ -47,6 +57,16 @@ class MainActivity : AppCompatActivity() {
         bttn_stickers_search.setOnClickListener {
 
             SearchStickersActivity.start(this)
+        }
+
+        bttn_reactions.setOnClickListener {
+
+            ReactionsActivity.start(this)
+        }
+
+        bttn_reaction_search.setOnClickListener {
+
+            ReactionSearchActivity.start(this)
         }
 
         bttn_trenting_gfycats.setOnClickListener {

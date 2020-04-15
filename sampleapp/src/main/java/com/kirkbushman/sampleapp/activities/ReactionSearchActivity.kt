@@ -3,21 +3,21 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import com.kirkbushman.gfycat.GfycatClient
-import com.kirkbushman.gfycat.models.User
+import com.kirkbushman.gfycat.models.Tag
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 
-class GetUserActivity : BaseSearchPrintActivity<User?>() {
+class ReactionSearchActivity : BaseSearchPrintActivity<Tag?>() {
 
     companion object {
 
         fun start(context: Context) {
-            val intent = Intent(context, GetUserActivity::class.java)
+            val intent = Intent(context, ReactionSearchActivity::class.java)
             context.startActivity(intent)
         }
     }
 
-    override fun fetchItem(client: GfycatClient, query: String): User? {
+    override fun fetchItem(client: GfycatClient, query: String): Tag? {
 
-        return client.user(query)
+        return client.reactionGfycat(tagName = query, gfyCount = 8)
     }
 }

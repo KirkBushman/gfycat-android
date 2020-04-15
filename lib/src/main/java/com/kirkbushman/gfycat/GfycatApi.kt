@@ -1,8 +1,8 @@
 package com.kirkbushman.gfycat
 
 import com.kirkbushman.gfycat.auth.Token
-import com.kirkbushman.gfycat.models.Me
-import com.kirkbushman.gfycat.models.User
+import com.kirkbushman.gfycat.models.*
+import com.kirkbushman.gfycat.models.Tag
 import com.kirkbushman.gfycat.models.envelopes.GfycatEnvelope
 import com.kirkbushman.gfycat.models.envelopes.GfycatsEnvelope
 import com.kirkbushman.gfycat.models.http.AuthBodyClient
@@ -26,6 +26,16 @@ interface GfycatApi {
     fun me(
         @HeaderMap header: HashMap<String, String>
     ): Call<Me>
+
+    @GET("/v1/me/follows")
+    fun following(
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Following>
+
+    @GET("/v1/me/followers")
+    fun followers(
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Followers>
 
     @GET("/v1/users/{userId}")
     fun user(
@@ -61,6 +71,23 @@ interface GfycatApi {
         @Query("cursor") cursor: String? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<GfycatsEnvelope>
+
+    @GET("/v1/reactions/populated")
+    fun reactionGfycats(
+        @Query("gfyCount") gfyCount: Int? = null,
+        @Query("locale") locale: String? = null,
+        @Query("cursor") cursor: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<ReactionTags>
+
+    @GET("/v1/reactions/populated")
+    fun reactionGfycat(
+        @Query("tagName") tagName: String,
+        @Query("gfyCount") gfyCount: Int? = null,
+        @Query("locale") locale: String? = null,
+        @Query("cursor") cursor: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Tag>
 
     @GET("/v1/gfycats/trending")
     fun trendingGfycat(

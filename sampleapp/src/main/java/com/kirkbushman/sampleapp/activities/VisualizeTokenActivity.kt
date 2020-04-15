@@ -9,7 +9,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.utils.doAsync
 import kotlinx.android.synthetic.main.activity_visualize_token.*
 
-class VisualizeTokenActivity : AppCompatActivity() {
+class VisualizeTokenActivity : AppCompatActivity(R.layout.activity_visualize_token) {
 
     companion object {
 
@@ -23,7 +23,6 @@ class VisualizeTokenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_visualize_token)
 
         token_refresh.setOnClickListener {
 
