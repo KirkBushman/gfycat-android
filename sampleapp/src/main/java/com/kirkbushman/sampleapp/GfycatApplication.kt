@@ -2,9 +2,7 @@ package com.kirkbushman.sampleapp
 
 import android.app.Application
 import com.kirkbushman.gfycat.GfycatClient
-import com.kirkbushman.gfycat.auth.AuthManager
-import com.kirkbushman.gfycat.auth.PasswordCredentials
-import com.kirkbushman.gfycat.auth.TokenBearer
+import com.kirkbushman.gfycat.auth.*
 import com.kirkbushman.gfycat.managers.SharedPrefsStorageManager
 import org.xmlpull.v1.XmlPullParser
 
@@ -43,9 +41,10 @@ class GfycatApplication : Application() {
         instance = this
     }
 
-    private fun loadCredsFromXmlFile(): PasswordCredentials {
+    private fun loadCredsFromXmlFile(): Credentials {
         val xpp = resources.getXml(R.xml.credentials)
 
+        var usePasswordAuth = true
         var clientId = ""
         var clientSecret = ""
         var username = ""
@@ -58,6 +57,7 @@ class GfycatApplication : Application() {
                 XmlPullParser.START_TAG -> {
 
                     when (xpp.name) {
+                        "usePasswordAuth" -> usePasswordAuth = xpp.nextText()!!.toBoolean()
                         "clientId" -> clientId = xpp.nextText()
                         "clientSecret" -> clientSecret = xpp.nextText()
                         "username" -> username = xpp.nextText()
@@ -69,6 +69,10 @@ class GfycatApplication : Application() {
             xpp.next()
         }
 
-        return PasswordCredentials(clientId, clientSecret, username, password)
+        return if (usePasswordAuth) {
+            PasswordCredentials(clientId, clientSecret, username, password)
+        } else {
+            ClientCredentials(clientId, clientSecret)
+        }
     }
 }
