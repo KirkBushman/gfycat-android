@@ -26,6 +26,7 @@
 
         <activity android:name=".activities.VisualizeTokenActivity" />
         <activity android:name=".activities.GetGfycatActivity" />
+        <activity android:name=".activities.GetGfycatUrlActivity" />
         <activity android:name=".activities.SelfActivity" />
         <activity android:name=".activities.FollowingActivity" />
         <activity android:name=".activities.FollowersActivity" />

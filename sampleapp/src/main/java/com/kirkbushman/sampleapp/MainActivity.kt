@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
             GetGfycatActivity.start(this)
         }
 
+        bttn_get_gfycats_from_url.setOnClickListener {
+
+            GetGfycatUrlActivity.start(this)
+        }
+
         bttn_self.setOnClickListener {
 
             SelfActivity.start(this)

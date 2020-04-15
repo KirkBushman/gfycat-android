@@ -128,7 +128,15 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
 
     fun gfycatFromUrl(uri: Uri): Gfycat? {
 
-        val gfyId = getGfyIdFromUrl(uri)
+
+        var gfyId = getGfyIdFromUrl(uri)
+        if (gfyId.contains('-')) {
+
+            // some urls include other params after the '-' symbol,
+            // remove them in order to get the id
+            gfyId = gfyId.replace(
+                gfyId.substring(gfyId.indexOfFirst { it == '-' }), "")
+        }
 
         val authMap = getHeaderMap()
         val req = api.gfycat(gfyId, authMap)

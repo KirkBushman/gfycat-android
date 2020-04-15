@@ -46,6 +46,14 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_get_gfycats_from_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_get_gfycats_from_url"
+                />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_self"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
