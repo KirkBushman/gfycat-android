@@ -128,7 +128,6 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
 
     fun gfycatFromUrl(uri: Uri): Gfycat? {
 
-
         var gfyId = getGfyIdFromUrl(uri)
         if (gfyId.contains('-')) {
 

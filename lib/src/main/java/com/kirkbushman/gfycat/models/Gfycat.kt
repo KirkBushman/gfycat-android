@@ -80,7 +80,7 @@ data class Gfycat(
     val height: Int,
 
     @Json(name = "content_urls")
-    val contentUrls: ContentUrls,
+    val contentUrls: ContentUrls?,
 
     @Json(name = "frameRate")
     val frameRate: Float,
