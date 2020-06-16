@@ -160,6 +160,36 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return gfycat(gfyId, retryRedgifsOnMiss)
     }
 
+    fun redgifs(id: String): Gfycat? {
+
+        val authMap = getHeaderMap()
+        val req = api.redgifs(
+            url = URL_REDGIFS.plus("/v1/gfycats/{gfyid}").replace("{gfyid}", id),
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.gfyItem
+    }
+
+    fun redgifsFromUrl(uri: Uri): Gfycat? {
+
+        var gfyId = getGfyIdFromUrl(uri)
+        if (gfyId.contains('-')) {
+
+            // some urls include other params after the '-' symbol,
+            // remove them in order to get the id
+            gfyId = gfyId.replace(
+                gfyId.substring(gfyId.indexOfFirst { it == '-' }), "")
+        }
+
+        return redgifs(gfyId)
+    }
+
     fun stickers(count: Int? = null, cursor: String? = null): List<Gfycat>? {
 
         val authMap = getHeaderMap()

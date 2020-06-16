@@ -58,6 +58,12 @@ interface GfycatApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<GfycatEnvelope>
 
+    @GET
+    fun redgifs(
+        @Url url: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<GfycatEnvelope>
+
     @GET("/v1/stickers")
     fun stickers(
         @Query("count") count: Int? = null,

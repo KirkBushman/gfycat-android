@@ -23,4 +23,6 @@
     <string name="no_items">No items to show.</string>
 
     <string name="edit_insert_query">Insert query:</string>
+    <string name="bttn_get_redgifs">Get Redgifs</string>
+    <string name="bttn_get_redgifs_from_url">Get Redgifs from Url</string>
 </resources>

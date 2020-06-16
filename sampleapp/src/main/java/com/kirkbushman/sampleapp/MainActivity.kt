@@ -29,6 +29,16 @@ class MainActivity : AppCompatActivity() {
             GetGfycatUrlActivity.start(this)
         }
 
+        bttn_get_redgifs.setOnClickListener {
+
+            GetRedgifsActivity.start(this)
+        }
+
+        bttn_get_redgifs_from_url.setOnClickListener {
+
+            GetRedgifsUrlActivity.start(this)
+        }
+
         bttn_self.setOnClickListener {
 
             SelfActivity.start(this)
