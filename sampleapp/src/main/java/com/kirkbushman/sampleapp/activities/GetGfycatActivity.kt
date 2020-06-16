@@ -18,6 +18,6 @@ class GetGfycatActivity : BaseSearchPrintActivity<Gfycat?>() {
 
     override fun fetchItem(client: GfycatClient, query: String): Gfycat? {
 
-        return client.gfycat(query)
+        return client.gfycat(query, retryRedgifsOnMiss = true)
     }
 }

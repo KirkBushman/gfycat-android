@@ -3,6 +3,8 @@ package com.kirkbushman.gfycat
 import android.net.Uri
 import com.kirkbushman.gfycat.auth.TokenBearer
 import com.kirkbushman.gfycat.models.*
+import com.kirkbushman.gfycat.utils.Utils.URL_GFYCAT
+import com.kirkbushman.gfycat.utils.Utils.URL_REDGIFS
 import com.kirkbushman.gfycat.utils.Utils.buildRetrofit
 import com.kirkbushman.gfycat.utils.Utils.getGfyIdFromUrl
 import retrofit2.Retrofit
@@ -113,11 +115,29 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.gfycats
     }
 
-    fun gfycat(id: String): Gfycat? {
+    fun gfycat(id: String, retryRedgifsOnMiss: Boolean = false): Gfycat? {
 
         val authMap = getHeaderMap()
-        val req = api.gfycat(id, authMap)
+        val req = api.gfycat(
+            url = URL_GFYCAT.plus("/v1/gfycats/{gfyid}").replace("{gfyid}", id),
+            header = authMap
+        )
+
         val res = req.execute()
+        if (retryRedgifsOnMiss && res.code() == 404) {
+
+            val req2 = api.gfycat(
+                url = URL_REDGIFS.plus("/v1/gfycats/{gfyid}").replace("{gfyid}", id),
+                header = authMap
+            )
+
+            val res2 = req2.execute()
+            if (!res2.isSuccessful) {
+                return null
+            }
+
+            return res2.body()?.gfyItem
+        }
 
         if (!res.isSuccessful) {
             return null
@@ -126,7 +146,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.gfyItem
     }
 
-    fun gfycatFromUrl(uri: Uri): Gfycat? {
+    fun gfycatFromUrl(uri: Uri, retryRedgifsOnMiss: Boolean = false): Gfycat? {
 
         var gfyId = getGfyIdFromUrl(uri)
         if (gfyId.contains('-')) {
@@ -137,15 +157,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
                 gfyId.substring(gfyId.indexOfFirst { it == '-' }), "")
         }
 
-        val authMap = getHeaderMap()
-        val req = api.gfycat(gfyId, authMap)
-        val res = req.execute()
-
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()?.gfyItem
+        return gfycat(gfyId, retryRedgifsOnMiss)
     }
 
     fun stickers(count: Int? = null, cursor: String? = null): List<Gfycat>? {

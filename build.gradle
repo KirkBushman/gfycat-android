@@ -3,16 +3,16 @@
 buildscript {
 
     ext {
-        android_gradle_ver = '4.0.0-rc01'
+        android_gradle_ver = '4.0.0'
 
         kotlin_ver   = '1.3.72'
-        ktx_ver      = '1.2.0'
+        ktx_ver      = '1.3.0'
         retrofit_ver = '2.9.0'
-        moshi_ver    = '1.9.2'
+        moshi_ver    = '1.9.3'
         okhttp_ver   = '4.7.2'
         mdc_ver      = '1.1.0'
         epoxy_ver    = '3.11.0'
-        leak_ver     = '2.3'
+        leak_ver     = '2.4'
     }
 
     repositories {

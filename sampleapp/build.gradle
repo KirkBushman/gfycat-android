@@ -48,6 +48,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.core:core-ktx:$ktx_ver"
 
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_ver"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_ver"
+
     implementation "com.airbnb.android:epoxy:$epoxy_ver"
     kapt "com.airbnb.android:epoxy-processor:$epoxy_ver"
 
