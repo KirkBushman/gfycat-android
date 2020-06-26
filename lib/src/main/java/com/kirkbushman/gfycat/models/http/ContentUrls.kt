@@ -11,19 +11,19 @@ import kotlinx.android.parcel.Parcelize
 data class ContentUrls(
 
     @Json(name = "100pxGif")
-    val size100PxGif: GfycatUrl,
+    val size100PxGif: GfycatUrl?,
 
     @Json(name = "max1mbGif")
-    val max1mbGif: GfycatUrl,
+    val max1mbGif: GfycatUrl?,
 
     @Json(name = "max2mbGif")
-    val max2mbGif: GfycatUrl,
+    val max2mbGif: GfycatUrl?,
 
     @Json(name = "max5mbGif")
-    val max5mbGif: GfycatUrl,
+    val max5mbGif: GfycatUrl?,
 
     @Json(name = "largeGif")
-    val largeGif: GfycatUrl,
+    val largeGif: GfycatUrl?,
 
     @Json(name = "webp")
     val webp: GfycatUrl?,

@@ -8,7 +8,6 @@ import com.kirkbushman.gfycat.models.envelopes.GfycatsEnvelope
 import com.kirkbushman.gfycat.models.http.AuthBodyClient
 import com.kirkbushman.gfycat.models.http.AuthBodyPassword
 import com.kirkbushman.gfycat.models.http.AuthBodyRenew
-import com.kirkbushman.gfycat.utils.Utils.URL_GFYCAT
 import retrofit2.Call
 import retrofit2.http.*
 
