@@ -35,6 +35,7 @@
         <activity android:name=".activities.GetUserActivity" />
         <activity android:name=".activities.GetUserFeedActivity" />
         <activity android:name=".activities.GfycatActivity" />
+        <activity android:name=".activities.SearchGfycatActivity" />
         <activity android:name=".activities.StickersActivity" />
         <activity android:name=".activities.SearchStickersActivity" />
         <activity android:name=".activities.ReactionsActivity" />

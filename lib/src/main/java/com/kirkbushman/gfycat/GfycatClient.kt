@@ -190,6 +190,25 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return redgifs(gfyId)
     }
 
+    fun gfycatsSearch(searchText: String, count: Int? = null, cursor: String? = null): List<Gfycat>? {
+
+        val authMap = getHeaderMap()
+        val req = api.searchGfycats(
+            searchText = searchText,
+            count = count,
+            cursor = cursor,
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+
+            return null
+        }
+
+        return res.body()?.gfycats
+    }
+
     fun stickers(count: Int? = null, cursor: String? = null): List<Gfycat>? {
 
         val authMap = getHeaderMap()

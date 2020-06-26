@@ -63,6 +63,14 @@ interface GfycatApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<GfycatEnvelope>
 
+    @GET("/v1/gfycats/search")
+    fun searchGfycats(
+        @Query("search_text") searchText: String,
+        @Query("count") count: Int? = null,
+        @Query("cursor") cursor: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<GfycatsEnvelope>
+
     @GET("/v1/stickers")
     fun stickers(
         @Query("count") count: Int? = null,

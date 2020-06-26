@@ -54,6 +54,14 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_search_gfycat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_search_gfycat"
+                />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_get_redgifs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
