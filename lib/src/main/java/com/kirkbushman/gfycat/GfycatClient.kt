@@ -154,7 +154,8 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
             // some urls include other params after the '-' symbol,
             // remove them in order to get the id
             gfyId = gfyId.replace(
-                gfyId.substring(gfyId.indexOfFirst { it == '-' }), "")
+                gfyId.substring(gfyId.indexOfFirst { it == '-' }), ""
+            )
         }
 
         return gfycat(gfyId, retryRedgifsOnMiss)
@@ -184,7 +185,8 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
             // some urls include other params after the '-' symbol,
             // remove them in order to get the id
             gfyId = gfyId.replace(
-                gfyId.substring(gfyId.indexOfFirst { it == '-' }), "")
+                gfyId.substring(gfyId.indexOfFirst { it == '-' }), ""
+            )
         }
 
         return redgifs(gfyId)

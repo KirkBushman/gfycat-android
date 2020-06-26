@@ -42,9 +42,12 @@ class StickersActivity : AppCompatActivity(R.layout.activity_stickers) {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(doWork = { items.addAll(client?.stickers(count = 30) ?: listOf()) }, onPost = {
+        doAsync(
+            doWork = { items.addAll(client?.stickers(count = 30) ?: listOf()) },
+            onPost = {
 
-            controller.setItems(items)
-        })
+                controller.setItems(items)
+            }
+        )
     }
 }

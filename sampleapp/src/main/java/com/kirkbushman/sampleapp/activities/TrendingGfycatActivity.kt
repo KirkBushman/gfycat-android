@@ -42,9 +42,12 @@ class TrendingGfycatActivity : AppCompatActivity(R.layout.activity_trending_gfyc
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(doWork = { items.addAll(client?.trendingGfycat(count = 30) ?: listOf()) }, onPost = {
+        doAsync(
+            doWork = { items.addAll(client?.trendingGfycat(count = 30) ?: listOf()) },
+            onPost = {
 
-            controller.setItems(items)
-        })
+                controller.setItems(items)
+            }
+        )
     }
 }

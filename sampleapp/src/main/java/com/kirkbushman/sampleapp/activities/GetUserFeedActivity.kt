@@ -48,10 +48,13 @@ class GetUserFeedActivity : AppCompatActivity(R.layout.activity_get_user_feed) {
             val userId = query.text.toString()
             items.clear()
 
-            doAsync(doWork = { items.addAll(client?.userFeed(userId) ?: listOf()) }, onPost = {
+            doAsync(
+                doWork = { items.addAll(client?.userFeed(userId) ?: listOf()) },
+                onPost = {
 
-                controller.setItems(items)
-            })
+                    controller.setItems(items)
+                }
+            )
         }
     }
 }

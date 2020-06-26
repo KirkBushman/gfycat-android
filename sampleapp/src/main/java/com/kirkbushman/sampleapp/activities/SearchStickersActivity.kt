@@ -47,10 +47,13 @@ class SearchStickersActivity : AppCompatActivity(R.layout.activity_stickers_sear
             val searchText = query.text.toString()
             items.clear()
 
-            doAsync(doWork = { items.addAll(client?.stickersSearch(searchText, count = 30) ?: listOf()) }, onPost = {
+            doAsync(
+                doWork = { items.addAll(client?.stickersSearch(searchText, count = 30) ?: listOf()) },
+                onPost = {
 
-                controller.setItems(items)
-            })
+                    controller.setItems(items)
+                }
+            )
         }
     }
 }

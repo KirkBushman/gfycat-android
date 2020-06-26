@@ -47,10 +47,13 @@ class SearchGfycatActivity : AppCompatActivity(R.layout.activity_gfycat_search) 
             val searchText = query.text.toString()
             items.clear()
 
-            doAsync(doWork = { items.addAll(client?.gfycatsSearch(searchText, count = 30) ?: listOf()) }, onPost = {
+            doAsync(
+                doWork = { items.addAll(client?.gfycatsSearch(searchText, count = 30) ?: listOf()) },
+                onPost = {
 
-                controller.setItems(items)
-            })
+                    controller.setItems(items)
+                }
+            )
         }
     }
 }

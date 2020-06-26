@@ -26,10 +26,13 @@ class VisualizeTokenActivity : AppCompatActivity(R.layout.activity_visualize_tok
 
         token_refresh.setOnClickListener {
 
-            doAsync(doWork = { bearer?.renewToken() }, onPost = {
+            doAsync(
+                doWork = { bearer?.renewToken() },
+                onPost = {
 
-                token_text.text = bearer.toString()
-            })
+                    token_text.text = bearer.toString()
+                }
+            )
         }
 
         token_text.text = bearer.toString()
