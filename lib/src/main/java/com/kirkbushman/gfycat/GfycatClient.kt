@@ -43,7 +43,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         }
     }
 
-    private val api = getApi(logging)
+    private val api by lazy { getApi(logging) }
 
     fun me(): Me? {
 
