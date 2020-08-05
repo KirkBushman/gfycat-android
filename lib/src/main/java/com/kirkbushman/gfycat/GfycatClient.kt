@@ -18,28 +18,34 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         @Volatile
         private var api: GfycatApi? = null
 
+        @JvmStatic
         @Synchronized
         fun getRetrofit(logging: Boolean = false): Retrofit {
-            return synchronized(this) {
 
-                if (retrofit == null) {
+            if (retrofit == null) {
+
+                synchronized(this) {
+
                     retrofit = buildRetrofit(logging)
                 }
-
-                retrofit!!
             }
+
+            return retrofit!!
         }
 
+        @JvmStatic
         @Synchronized
         fun getApi(logging: Boolean = false): GfycatApi {
-            return synchronized(this) {
 
-                if (api == null) {
+            if (api == null) {
+
+                synchronized(this) {
+
                     api = getRetrofit(logging).create(GfycatApi::class.java)
                 }
-
-                api!!
             }
+
+            return api!!
         }
     }
 
