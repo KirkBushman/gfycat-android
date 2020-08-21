@@ -13,8 +13,8 @@ buildscript {
 
         jvm_ver = JavaVersion.VERSION_1_8
 
-        kotlin_ver     = '1.3.72'
-        coroutines_ver = '1.3.8'
+        kotlin_ver     = '1.4.0'
+        coroutines_ver = '1.3.9'
         ktx_ver        = '1.3.1'
         retrofit_ver   = '2.9.0'
         moshi_ver      = '1.9.3'
