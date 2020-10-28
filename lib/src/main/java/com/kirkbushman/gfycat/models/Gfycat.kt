@@ -119,7 +119,7 @@ data class Gfycat(
     val rating: String?,
 
     @Json(name = "userName")
-    val userName: String,
+    val userName: String?,
 
     @Json(name = "userDisplayName")
     val userDisplayName: String?,
