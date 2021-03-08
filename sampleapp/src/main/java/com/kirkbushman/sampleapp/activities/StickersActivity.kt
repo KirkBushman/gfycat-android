@@ -6,13 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.GfycatController
 import com.kirkbushman.sampleapp.controllers.OnClickCallback
+import com.kirkbushman.sampleapp.databinding.ActivityStickersBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_stickers.*
 
-class StickersActivity : AppCompatActivity(R.layout.activity_stickers) {
+class StickersActivity : AppCompatActivity() {
 
     companion object {
 
@@ -36,11 +35,16 @@ class StickersActivity : AppCompatActivity(R.layout.activity_stickers) {
         })
     }
 
+    private lateinit var binding: ActivityStickersBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding = ActivityStickersBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
         doAsync(
             doWork = { items.addAll(client?.stickers(count = 30) ?: listOf()) },

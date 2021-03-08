@@ -5,11 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ActivityVisualizeTokenBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_visualize_token.*
 
-class VisualizeTokenActivity : AppCompatActivity(R.layout.activity_visualize_token) {
+class VisualizeTokenActivity : AppCompatActivity() {
 
     companion object {
 
@@ -21,20 +20,25 @@ class VisualizeTokenActivity : AppCompatActivity(R.layout.activity_visualize_tok
 
     private val bearer by lazy { GfycatApplication.instance?.getTokenBearer() }
 
+    private lateinit var binding: ActivityVisualizeTokenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        token_refresh.setOnClickListener {
+        binding = ActivityVisualizeTokenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.tokenRefresh.setOnClickListener {
 
             doAsync(
                 doWork = { bearer?.renewToken() },
                 onPost = {
 
-                    token_text.text = bearer.toString()
+                    binding.tokenText.text = bearer.toString()
                 }
             )
         }
 
-        token_text.text = bearer.toString()
+        binding.tokenText.text = bearer.toString()
     }
 }

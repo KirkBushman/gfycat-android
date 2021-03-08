@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.kirkbushman.gfycat.models.http.ContentUrls
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -17,94 +17,94 @@ data class Gfycat(
     val gfyName: String,
 
     @Json(name = "gfyNumber")
-    val gfyNumber: String,
+    val gfyNumber: String?,
 
     @Json(name = "title")
-    val title: String,
+    val title: String?,
 
     @Json(name = "description")
-    val description: String,
+    val description: String?,
 
     @Json(name = "avgColor")
-    val avgColor: String,
+    val avgColor: String?,
 
     @Json(name = "webmUrl")
-    val webmUrl: String,
+    val webmUrl: String?,
 
     @Json(name = "gifUrl")
-    val gifUrl: String,
+    val gifUrl: String?,
 
     @Json(name = "miniUrl")
-    val miniUrl: String,
+    val miniUrl: String?,
 
     @Json(name = "miniPosterUrl")
-    val miniPosterUrl: String,
+    val miniPosterUrl: String?,
 
     @Json(name = "mobileUrl")
-    val mobileUrl: String,
+    val mobileUrl: String?,
 
     @Json(name = "mobilePosterUrl")
-    val mobilePosterUrl: String,
+    val mobilePosterUrl: String?,
 
     @Json(name = "posterUrl")
-    val posterUrl: String,
+    val posterUrl: String?,
 
     @Json(name = "thumb100PosterUrl")
-    val thumb100PosterUrl: String,
+    val thumb100PosterUrl: String?,
 
     @Json(name = "max5mbGif")
-    val max5mbGif: String,
+    val max5mbGif: String?,
 
     @Json(name = "max2mbGif")
-    val max2mbGif: String,
+    val max2mbGif: String?,
 
     @Json(name = "max1mbGif")
-    val max1mbGif: String,
+    val max1mbGif: String?,
 
     @Json(name = "gif100px")
-    val gif100px: String,
+    val gif100px: String?,
 
     @Json(name = "mp4Url")
-    val mp4Url: String,
+    val mp4Url: String?,
 
     @Json(name = "webpUrl")
-    val webpUrl: String,
+    val webpUrl: String?,
 
     @Json(name = "url")
     val url: String?,
 
     @Json(name = "width")
-    val width: Int,
+    val width: Int?,
 
     @Json(name = "height")
-    val height: Int,
+    val height: Int?,
 
     @Json(name = "content_urls")
     val contentUrls: ContentUrls?,
 
     @Json(name = "frameRate")
-    val frameRate: Float,
+    val frameRate: Float?,
 
     @Json(name = "numFrames")
-    val numFrames: Int,
+    val numFrames: Int?,
 
     @Json(name = "mp4Size")
-    val mp4Size: Int,
+    val mp4Size: Int?,
 
     @Json(name = "webmSize")
-    val webmSize: Int,
+    val webmSize: Int?,
 
     @Json(name = "createDate")
     val createDate: Long,
 
     @Json(name = "nsfw")
-    val nsfw: String,
+    val nsfw: String?,
 
     @Json(name = "hasAudio")
-    val hasAudio: Boolean,
+    val hasAudio: Boolean?,
 
     @Json(name = "hasTransparency")
-    val hasTransparency: Boolean,
+    val hasTransparency: Boolean?,
 
     @Json(name = "likes")
     val likes: Int,
@@ -113,7 +113,7 @@ data class Gfycat(
     val dislikes: Int,
 
     @Json(name = "gatekeeper")
-    val gatekeeper: Int,
+    val gatekeeper: Int?,
 
     @Json(name = "rating")
     val rating: String?,
@@ -128,10 +128,10 @@ data class Gfycat(
     val userProfileImageUrl: String?,
 
     @Json(name = "extraLemmas")
-    val extraLemmas: String,
+    val extraLemmas: String?,
 
     @Json(name = "published")
-    val published: Short,
+    val published: Short?,
 
     @Json(name = "source")
     val source: Int,

@@ -5,13 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.OnClickCallback
 import com.kirkbushman.sampleapp.controllers.TagsController
+import com.kirkbushman.sampleapp.databinding.ActivityTrendingTagsBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_trending_tags.*
 
-class TrendingTagsActivity : AppCompatActivity(R.layout.activity_trending_tags) {
+class TrendingTagsActivity : AppCompatActivity() {
 
     companion object {
 
@@ -31,11 +30,16 @@ class TrendingTagsActivity : AppCompatActivity(R.layout.activity_trending_tags) 
         })
     }
 
+    private lateinit var binding: ActivityTrendingTagsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding = ActivityTrendingTagsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
         doAsync(
             doWork = { items.addAll(client?.trendingTags(tagCount = 30) ?: listOf()) },

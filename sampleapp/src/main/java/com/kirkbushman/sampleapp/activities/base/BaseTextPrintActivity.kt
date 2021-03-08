@@ -3,11 +3,10 @@ package com.kirkbushman.sampleapp.activities.base
 import android.os.Bundle
 import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ActivityTextPrintBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_text_print.*
 
-abstract class BaseTextPrintActivity<T> : BaseActivity(R.layout.activity_text_print) {
+abstract class BaseTextPrintActivity<T> : BaseActivity() {
 
     private val client by lazy { GfycatApplication.instance?.getClient() }
 
@@ -15,10 +14,15 @@ abstract class BaseTextPrintActivity<T> : BaseActivity(R.layout.activity_text_pr
 
     abstract fun fetchItem(client: GfycatClient): T
 
+    private lateinit var binding: ActivityTextPrintBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(toolbar)
+        binding = ActivityTextPrintBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
@@ -26,7 +30,7 @@ abstract class BaseTextPrintActivity<T> : BaseActivity(R.layout.activity_text_pr
 
         doAsync(
             doWork = { item = fetchItem(client!!) },
-            onPost = { obj_text.text = item.toString() }
+            onPost = { binding.objText.text = item.toString() }
         )
     }
 }

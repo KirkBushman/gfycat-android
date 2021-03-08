@@ -1,13 +1,9 @@
 package com.kirkbushman.sampleapp.activities.base
 
 import android.view.MenuItem
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity : AppCompatActivity {
-
-    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
-    constructor() : super()
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

@@ -6,13 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.GfycatController
 import com.kirkbushman.sampleapp.controllers.OnClickCallback
+import com.kirkbushman.sampleapp.databinding.ActivityGfycatSearchBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_stickers_search.*
 
-class SearchGfycatActivity : AppCompatActivity(R.layout.activity_gfycat_search) {
+class SearchGfycatActivity : AppCompatActivity() {
 
     companion object {
 
@@ -36,15 +35,20 @@ class SearchGfycatActivity : AppCompatActivity(R.layout.activity_gfycat_search) 
         })
     }
 
+    private lateinit var binding: ActivityGfycatSearchBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding = ActivityGfycatSearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        search_bttn.setOnClickListener {
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
-            val searchText = query.text.toString()
+        binding.searchBttn.setOnClickListener {
+
+            val searchText = binding.query.text.toString()
             items.clear()
 
             doAsync(

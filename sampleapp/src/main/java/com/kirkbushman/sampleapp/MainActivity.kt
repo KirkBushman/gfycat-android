@@ -3,98 +3,102 @@ package com.kirkbushman.sampleapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kirkbushman.sampleapp.activities.*
+import com.kirkbushman.sampleapp.databinding.ActivityMainBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         doAsync(doWork = { GfycatApplication.instance?.loadClient() })
 
-        bttn_visualize_token.setOnClickListener {
+        binding.bttnVisualizeToken.setOnClickListener {
 
             VisualizeTokenActivity.start(this)
         }
 
-        bttn_get_gfycats.setOnClickListener {
+        binding.bttnGetGfycats.setOnClickListener {
 
             GetGfycatActivity.start(this)
         }
 
-        bttn_get_gfycats_from_url.setOnClickListener {
+        binding.bttnGetGfycatsFromUrl.setOnClickListener {
 
             GetGfycatUrlActivity.start(this)
         }
 
-        bttn_search_gfycat.setOnClickListener {
+        binding.bttnSearchGfycat.setOnClickListener {
 
             SearchGfycatActivity.start(this)
         }
 
-        bttn_get_redgifs.setOnClickListener {
+        binding.bttnGetRedgifs.setOnClickListener {
 
             GetRedgifsActivity.start(this)
         }
 
-        bttn_get_redgifs_from_url.setOnClickListener {
+        binding.bttnGetRedgifsFromUrl.setOnClickListener {
 
             GetRedgifsUrlActivity.start(this)
         }
 
-        bttn_self.setOnClickListener {
+        binding.bttnSelf.setOnClickListener {
 
             SelfActivity.start(this)
         }
 
-        bttn_following.setOnClickListener {
+        binding.bttnFollowing.setOnClickListener {
 
             FollowingActivity.start(this)
         }
 
-        bttn_followers.setOnClickListener {
+        binding.bttnFollowers.setOnClickListener {
 
             FollowersActivity.start(this)
         }
 
-        bttn_get_user.setOnClickListener {
+        binding.bttnGetUser.setOnClickListener {
 
             GetUserActivity.start(this)
         }
 
-        bttn_get_user_feed.setOnClickListener {
+        binding.bttnGetUserFeed.setOnClickListener {
 
             GetUserFeedActivity.start(this)
         }
 
-        bttn_stickers.setOnClickListener {
+        binding.bttnStickers.setOnClickListener {
 
             StickersActivity.start(this)
         }
 
-        bttn_stickers_search.setOnClickListener {
+        binding.bttnStickersSearch.setOnClickListener {
 
             SearchStickersActivity.start(this)
         }
 
-        bttn_reactions.setOnClickListener {
+        binding.bttnReactions.setOnClickListener {
 
             ReactionsActivity.start(this)
         }
 
-        bttn_reaction_search.setOnClickListener {
+        binding.bttnReactionSearch.setOnClickListener {
 
             ReactionSearchActivity.start(this)
         }
 
-        bttn_trenting_gfycats.setOnClickListener {
+        binding.bttnTrentingGfycats.setOnClickListener {
 
             TrendingGfycatActivity.start(this)
         }
 
-        bttn_trenting_tags.setOnClickListener {
+        binding.bttnTrentingTags.setOnClickListener {
 
             TrendingTagsActivity.start(this)
         }

@@ -1,13 +1,16 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.kotlin.plugin.parcelize"
+    id "org.jetbrains.kotlin.kapt"
+}
 
 android {
     compileSdkVersion compile_sdk_ver
     buildToolsVersion build_tools_ver
 
     defaultConfig {
+
         minSdkVersion min_sdk_ver
         targetSdkVersion target_sdk_ver
         versionCode 1
@@ -34,20 +37,15 @@ kotlin {
     explicitApiWarning()
 }
 
-androidExtensions {
-    experimental = true
-}
-
 kapt {
     useBuildCache = true
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation "androidx.core:core-ktx:$ktx_ver"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
+
+    implementation "androidx.core:core-ktx:$ax_core_ver"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_ver"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_ver"

@@ -8,7 +8,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_tag)
+@EpoxyModelClass
 abstract class TagModel : EpoxyModelWithHolder<TagHolder>() {
 
     @EpoxyAttribute
@@ -16,6 +16,10 @@ abstract class TagModel : EpoxyModelWithHolder<TagHolder>() {
 
     @EpoxyAttribute
     lateinit var listener: View.OnClickListener
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_tag
+    }
 
     override fun bind(holder: TagHolder) {
 

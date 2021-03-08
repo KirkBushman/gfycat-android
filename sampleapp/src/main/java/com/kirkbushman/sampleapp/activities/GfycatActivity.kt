@@ -5,10 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.gfycat.models.Gfycat
-import com.kirkbushman.sampleapp.R
-import kotlinx.android.synthetic.main.activity_gfycat.*
+import com.kirkbushman.sampleapp.databinding.ActivityGfycatBinding
 
-class GfycatActivity : AppCompatActivity(R.layout.activity_gfycat) {
+class GfycatActivity : AppCompatActivity() {
 
     companion object {
 
@@ -24,9 +23,14 @@ class GfycatActivity : AppCompatActivity(R.layout.activity_gfycat) {
 
     private val gfycat by lazy { intent.getParcelableExtra<Gfycat>(PARAM_GFYCAT)!! }
 
+    private lateinit var binding: ActivityGfycatBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        gfycat_text.text = gfycat.toString()
+        binding = ActivityGfycatBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.gfycatText.text = gfycat.toString()
     }
 }

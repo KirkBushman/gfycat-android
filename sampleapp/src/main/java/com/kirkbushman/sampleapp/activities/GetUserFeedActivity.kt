@@ -6,14 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.GfycatController
 import com.kirkbushman.sampleapp.controllers.OnClickCallback
+import com.kirkbushman.sampleapp.databinding.ActivityGetUserFeedBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_get_user_feed.*
-import kotlinx.android.synthetic.main.activity_get_user_feed.list
 
-class GetUserFeedActivity : AppCompatActivity(R.layout.activity_get_user_feed) {
+class GetUserFeedActivity : AppCompatActivity() {
 
     companion object {
 
@@ -37,15 +35,20 @@ class GetUserFeedActivity : AppCompatActivity(R.layout.activity_get_user_feed) {
         })
     }
 
+    private lateinit var binding: ActivityGetUserFeedBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding = ActivityGetUserFeedBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        search_bttn.setOnClickListener {
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
-            val userId = query.text.toString()
+        binding.searchBttn.setOnClickListener {
+
+            val userId = binding.query.text.toString()
             items.clear()
 
             doAsync(

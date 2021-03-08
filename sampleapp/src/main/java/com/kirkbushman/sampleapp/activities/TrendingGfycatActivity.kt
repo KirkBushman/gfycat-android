@@ -6,13 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.sampleapp.GfycatApplication
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.GfycatController
 import com.kirkbushman.sampleapp.controllers.OnClickCallback
+import com.kirkbushman.sampleapp.databinding.ActivityTrendingGfycatBinding
 import com.kirkbushman.sampleapp.utils.doAsync
-import kotlinx.android.synthetic.main.activity_trending_gfycat.*
 
-class TrendingGfycatActivity : AppCompatActivity(R.layout.activity_trending_gfycat) {
+class TrendingGfycatActivity : AppCompatActivity() {
 
     companion object {
 
@@ -36,11 +35,16 @@ class TrendingGfycatActivity : AppCompatActivity(R.layout.activity_trending_gfyc
         })
     }
 
+    private lateinit var binding: ActivityTrendingGfycatBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding = ActivityTrendingGfycatBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
         doAsync(
             doWork = { items.addAll(client?.trendingGfycat(count = 30) ?: listOf()) },
