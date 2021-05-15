@@ -98,7 +98,7 @@ data class Gfycat(
     val createDate: Long,
 
     @Json(name = "nsfw")
-    val nsfw: String?,
+    val nsfw: Boolean?,
 
     @Json(name = "hasAudio")
     val hasAudio: Boolean?,

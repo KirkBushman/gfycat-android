@@ -28,7 +28,7 @@ class TagsController(private val callback: OnClickCallback) : EpoxyController() 
             tag {
                 id(it)
                 tag(it)
-                listener(View.OnClickListener { callback.onClick(index) })
+                listener(View.OnClickListener { this@TagsController.callback.onClick(index) })
             }
         }
     }

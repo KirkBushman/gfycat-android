@@ -29,7 +29,7 @@ class GfycatController(private val callback: OnClickCallback) : EpoxyController(
             gfycat {
                 id(it.gfyId)
                 gfycat(it)
-                listener(View.OnClickListener { callback.onClick(index) })
+                listener(View.OnClickListener { this@GfycatController.callback.onClick(index) })
             }
         }
     }
