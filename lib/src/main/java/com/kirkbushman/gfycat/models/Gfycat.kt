@@ -98,7 +98,7 @@ data class Gfycat(
     val createDate: Long,
 
     @Json(name = "nsfw")
-    val nsfw: Boolean?,
+    val nsfwRaw: @kotlinx.parcelize.RawValue Any?,
 
     @Json(name = "hasAudio")
     val hasAudio: Boolean?,
@@ -145,4 +145,15 @@ data class Gfycat(
     @Json(name = "languageCategories")
     val languageCategories: List<String>?
 
-) : Parcelable
+) : Parcelable {
+
+    val nsfw: Boolean
+        get() {
+
+            return if (nsfwRaw != null && nsfwRaw is Boolean) {
+                nsfwRaw
+            } else {
+                false
+            }
+        }
+}

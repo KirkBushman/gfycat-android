@@ -16,32 +16,107 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
 
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.VisualizeTokenActivity" />
-        <activity android:name=".activities.GetGfycatActivity" />
-        <activity android:name=".activities.GetGfycatUrlActivity" />
-        <activity android:name=".activities.GetRedgifsActivity" />
-        <activity android:name=".activities.GetRedgifsUrlActivity" />
-        <activity android:name=".activities.SelfActivity" />
-        <activity android:name=".activities.FollowingActivity" />
-        <activity android:name=".activities.FollowersActivity" />
-        <activity android:name=".activities.GetUserActivity" />
-        <activity android:name=".activities.GetUserFeedActivity" />
-        <activity android:name=".activities.GfycatActivity" />
-        <activity android:name=".activities.SearchGfycatActivity" />
-        <activity android:name=".activities.StickersActivity" />
-        <activity android:name=".activities.SearchStickersActivity" />
-        <activity android:name=".activities.ReactionsActivity" />
-        <activity android:name=".activities.ReactionSearchActivity" />
-        <activity android:name=".activities.TrendingGfycatActivity" />
-        <activity android:name=".activities.TrendingTagsActivity" />
+        <activity
+            android:name=".activities.VisualizeTokenActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GetGfycatActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GetGfycatUrlActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GetRedgifsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GetRedgifsUrlActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SelfActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.FollowingActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.FollowersActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GetUserActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GetUserFeedActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.GfycatActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SearchGfycatActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.StickersActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SearchStickersActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.ReactionsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.ReactionSearchActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.TrendingGfycatActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.TrendingTagsActivity"
+            android:exported="false"
+            />
 
     </application>
 </manifest>
