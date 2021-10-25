@@ -107,10 +107,10 @@ data class Gfycat(
     val hasTransparency: Boolean?,
 
     @Json(name = "likes")
-    val likes: Int,
+    val likes: Int?,
 
     @Json(name = "dislikes")
-    val dislikes: Int,
+    val dislikes: Int?,
 
     @Json(name = "gatekeeper")
     val gatekeeper: Int?,
@@ -134,10 +134,10 @@ data class Gfycat(
     val published: Short?,
 
     @Json(name = "source")
-    val source: Int,
+    val source: Int?,
 
     @Json(name = "views")
-    val views: Int,
+    val views: Int?,
 
     @Json(name = "tags")
     val tags: List<String>?,
