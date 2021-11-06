@@ -17,9 +17,9 @@ buildscript {
         kotlin_ver = '1.5.31'
         coroutines_ver = '1.5.2'
 
-        ax_core_ver = '1.6.0'
+        ax_core_ver = '1.7.0'
         ax_appcompat_ver = '1.3.1'
-        ax_activity_ver = '1.3.1'
+        ax_activity_ver = '1.4.0'
 
         constr_ver = '2.1.1'
         mdc_ver = '1.4.0'
@@ -30,7 +30,7 @@ buildscript {
 
         epoxy_ver = '4.6.4'
 
-        ktlint_ver = '0.42.1'
+        ktlint_ver = '0.43.0'
         leak_ver = '2.7'
     }
 

@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
 import com.kirkbushman.gfycat.GfycatClient
-import com.kirkbushman.gfycat.models.Gfycat
+import com.kirkbushman.gfycat.models.Redgif
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 
-class GetRedgifsUrlActivity : BaseSearchPrintActivity<Gfycat?>() {
+class GetRedgifsUrlActivity : BaseSearchPrintActivity<Redgif?>() {
 
     companion object {
 
@@ -17,7 +17,7 @@ class GetRedgifsUrlActivity : BaseSearchPrintActivity<Gfycat?>() {
         }
     }
 
-    override fun fetchItem(client: GfycatClient, query: String): Gfycat? {
+    override fun fetchItem(client: GfycatClient, query: String): Redgif? {
 
         return client.redgifsFromUrl(query.toUri())
     }
