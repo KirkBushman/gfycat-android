@@ -121,7 +121,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.gfycats
     }
 
-    fun gfycat(id: String, retryRedgifsOnMiss: Boolean = false): Gfycat? {
+    fun gfycat(id: String): Gfycat? {
 
         val authMap = getHeaderMap()
         val req = api.gfycat(
@@ -130,21 +130,6 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         )
 
         val res = req.execute()
-        if (retryRedgifsOnMiss && res.code() == 404) {
-
-            val req2 = api.gfycat(
-                url = URL_REDGIFS.plus("/v1/gfycats/{gfyid}").replace("{gfyid}", id),
-                header = authMap
-            )
-
-            val res2 = req2.execute()
-            if (!res2.isSuccessful) {
-                return null
-            }
-
-            return res2.body()?.gfyItem
-        }
-
         if (!res.isSuccessful) {
             return null
         }
@@ -152,7 +137,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.gfyItem
     }
 
-    fun gfycatFromUrl(uri: Uri, retryRedgifsOnMiss: Boolean = false): Gfycat? {
+    fun gfycatFromUrl(uri: Uri): Gfycat? {
 
         var gfyId = getGfyIdFromUrl(uri)
         if (gfyId.contains('-')) {
@@ -164,7 +149,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
             )
         }
 
-        return gfycat(gfyId, retryRedgifsOnMiss)
+        return gfycat(gfyId)
     }
 
     fun redgifs(id: String): Redgif? {

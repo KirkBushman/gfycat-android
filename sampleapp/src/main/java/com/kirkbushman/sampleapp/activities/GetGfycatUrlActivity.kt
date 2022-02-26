@@ -19,6 +19,6 @@ class GetGfycatUrlActivity : BaseSearchPrintActivity<Gfycat?>() {
 
     override fun fetchItem(client: GfycatClient, query: String): Gfycat? {
 
-        return client.gfycatFromUrl(query.toUri(), retryRedgifsOnMiss = true)
+        return client.gfycatFromUrl(query.toUri())
     }
 }

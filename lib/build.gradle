@@ -25,7 +25,6 @@ android {
 
     kotlinOptions {
         jvmTarget = jvm_target_ver
-        noReflect = true
     }
 
     lintOptions {
