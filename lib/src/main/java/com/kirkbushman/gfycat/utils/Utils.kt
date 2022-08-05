@@ -9,10 +9,20 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object Utils {
 
-    const val URL_GFYCAT = "https://api.gfycat.com"
-    const val URL_REDGIFS = "https://api.redgifs.com"
+    private const val URL_GFYCAT = "https://api.gfycat.com"
+    private const val URL_REDGIFS = "https://api.redgifs.com"
 
-    fun buildRetrofit(logging: Boolean): Retrofit {
+    fun buildGfycatRetrofit(logging: Boolean): Retrofit {
+
+        return buildRetrofit(URL_GFYCAT, logging)
+    }
+
+    fun buildRedgifsRetrofit(logging: Boolean): Retrofit {
+
+        return buildRetrofit(URL_REDGIFS, logging)
+    }
+
+    private fun buildRetrofit(url: String, logging: Boolean): Retrofit {
 
         val moshi = Moshi.Builder().build()
         val moshiFactory = MoshiConverterFactory.create(moshi)
@@ -34,7 +44,7 @@ object Utils {
         }
 
         return Retrofit.Builder()
-            .baseUrl(URL_GFYCAT)
+            .baseUrl(url)
             .addConverterFactory(moshiFactory)
             .client(httpClient)
             .build()

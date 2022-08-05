@@ -3,9 +3,7 @@ package com.kirkbushman.gfycat
 import android.net.Uri
 import com.kirkbushman.gfycat.auth.TokenBearer
 import com.kirkbushman.gfycat.models.*
-import com.kirkbushman.gfycat.utils.Utils.URL_GFYCAT
-import com.kirkbushman.gfycat.utils.Utils.URL_REDGIFS
-import com.kirkbushman.gfycat.utils.Utils.buildRetrofit
+import com.kirkbushman.gfycat.utils.Utils
 import com.kirkbushman.gfycat.utils.Utils.getGfyIdFromUrl
 import retrofit2.Retrofit
 
@@ -26,7 +24,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
 
                 synchronized(this) {
 
-                    retrofit = buildRetrofit(logging)
+                    retrofit = Utils.buildGfycatRetrofit(logging)
                 }
             }
 
@@ -125,7 +123,7 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
 
         val authMap = getHeaderMap()
         val req = api.gfycat(
-            url = URL_GFYCAT.plus("/v1/gfycats/{gfyid}").replace("{gfyid}", id),
+            gfyId = id,
             header = authMap
         )
 
@@ -150,37 +148,6 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         return gfycat(gfyId)
-    }
-
-    fun redgifs(id: String): Redgif? {
-
-        val authMap = getHeaderMap()
-        val req = api.redgifs(
-            url = URL_REDGIFS.plus("/v2/gifs/{gfyid}").replace("{gfyid}", id),
-            header = authMap
-        )
-
-        val res = req.execute()
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()?.gif
-    }
-
-    fun redgifsFromUrl(uri: Uri): Redgif? {
-
-        var gfyId = getGfyIdFromUrl(uri)
-        if (gfyId.contains('-')) {
-
-            // some urls include other params after the '-' symbol,
-            // remove them in order to get the id
-            gfyId = gfyId.replace(
-                gfyId.substring(gfyId.indexOfFirst { it == '-' }), ""
-            )
-        }
-
-        return redgifs(gfyId)
     }
 
     fun gfycatsSearch(searchText: String, count: Int? = null, cursor: String? = null): List<Gfycat>? {
@@ -311,6 +278,6 @@ class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
     }
 
     private fun getHeaderMap(): HashMap<String, String> {
-        return hashMapOf("Authorization" to "bearer ".plus(bearer.getRawAccessToken()))
+        return hashMapOf("Authorization" to "Bearer ".plus(bearer.getRawAccessToken()))
     }
 }

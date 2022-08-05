@@ -4,6 +4,7 @@ import android.app.Application
 import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.auth.*
 import com.kirkbushman.gfycat.managers.SharedPrefsStorageManager
+import com.kirkbushman.redgifs.RedgifsClient
 import org.xmlpull.v1.XmlPullParser
 
 class GfycatApplication : Application() {
@@ -16,23 +17,29 @@ class GfycatApplication : Application() {
     }
 
     private var bearer: TokenBearer? = null
-    private var client: GfycatClient? = null
+    private var gfycatClient: GfycatClient? = null
 
-    fun loadClient() {
+    private var redgifsClient: RedgifsClient? = null
+
+    fun loadClients() {
 
         val creds = loadCredsFromXmlFile()
         val auth = AuthManager(creds, LOGGING)
 
         bearer = auth.getAuthToken(SharedPrefsStorageManager(this))
-        client = auth.getGfycatClient(bearer!!)
+        gfycatClient = auth.getGfycatClient(bearer!!)
     }
 
     fun getTokenBearer(): TokenBearer? {
         return bearer
     }
 
-    fun getClient(): GfycatClient? {
-        return client
+    fun getGfycatClient(): GfycatClient? {
+        return gfycatClient
+    }
+
+    fun getRedgifsClient(): RedgifsClient? {
+        return redgifsClient
     }
 
     override fun onCreate() {

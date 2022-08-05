@@ -2,17 +2,19 @@ package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
 import com.kirkbushman.gfycat.GfycatClient
+import com.kirkbushman.redgifs.RedgifsClient
 import com.kirkbushman.sampleapp.GfycatApplication
 import com.kirkbushman.sampleapp.databinding.ActivitySearchPrintBinding
 import com.kirkbushman.sampleapp.utils.doAsync
 
 abstract class BaseSearchPrintActivity<T> : BaseActivity() {
 
-    private val client by lazy { GfycatApplication.instance?.getClient() }
+    private val gfycatClient by lazy { GfycatApplication.instance?.getGfycatClient() }
+    private val redgifsClient by lazy { GfycatApplication.instance?.getRedgifsClient() }
 
     private var item: T? = null
 
-    abstract fun fetchItem(client: GfycatClient, query: String): T
+    abstract fun fetchItem(gfycatClient: GfycatClient, redgifsClient: RedgifsClient, query: String): T
 
     private lateinit var binding: ActivitySearchPrintBinding
 
@@ -33,7 +35,7 @@ abstract class BaseSearchPrintActivity<T> : BaseActivity() {
             val query = binding.query.text.trim().toString()
 
             doAsync(
-                doWork = { item = fetchItem(client!!, query) },
+                doWork = { item = fetchItem(gfycatClient!!, redgifsClient!!, query) },
                 onPost = { binding.objText.text = item.toString() }
             )
         }

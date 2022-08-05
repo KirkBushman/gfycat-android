@@ -8,7 +8,7 @@ import com.kirkbushman.sampleapp.utils.doAsync
 
 abstract class BaseTextPrintActivity<T> : BaseActivity() {
 
-    private val client by lazy { GfycatApplication.instance?.getClient() }
+    private val client by lazy { GfycatApplication.instance?.getGfycatClient() }
 
     private var item: T? = null
 

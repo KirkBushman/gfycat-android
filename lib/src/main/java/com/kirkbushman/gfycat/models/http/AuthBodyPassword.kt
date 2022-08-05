@@ -13,4 +13,5 @@ data class AuthBodyPassword(
     val username: String,
     val password: String,
     val grant_type: String
+
 ) : Parcelable

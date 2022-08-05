@@ -5,7 +5,7 @@ import com.kirkbushman.gfycat.models.*
 import com.kirkbushman.gfycat.models.Tag
 import com.kirkbushman.gfycat.models.envelopes.GfycatEnvelope
 import com.kirkbushman.gfycat.models.envelopes.GfycatsEnvelope
-import com.kirkbushman.gfycat.models.envelopes.RedgifEnvelope
+import com.kirkbushman.redgifs.models.envelopes.RedgifEnvelope
 import com.kirkbushman.gfycat.models.http.AuthBodyClient
 import com.kirkbushman.gfycat.models.http.AuthBodyPassword
 import com.kirkbushman.gfycat.models.http.AuthBodyRenew
@@ -52,17 +52,11 @@ interface GfycatApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<GfycatsEnvelope>
 
-    @GET
+    @GET("/v1/gfycats/{gfyid}")
     fun gfycat(
-        @Url url: String,
+        @Path("gfyid") gfyId: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<GfycatEnvelope>
-
-    @GET
-    fun redgifs(
-        @Url url: String,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<RedgifEnvelope>
 
     @GET("/v1/gfycats/search")
     fun searchGfycats(

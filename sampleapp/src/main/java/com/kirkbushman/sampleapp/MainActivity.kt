@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        doAsync(doWork = { GfycatApplication.instance?.loadClient() })
+        doAsync(doWork = { GfycatApplication.instance?.loadClients() })
 
         binding.bttnVisualizeToken.setOnClickListener {
 

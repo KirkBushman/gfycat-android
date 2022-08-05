@@ -3,7 +3,8 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import com.kirkbushman.gfycat.GfycatClient
-import com.kirkbushman.gfycat.models.Redgif
+import com.kirkbushman.redgifs.RedgifsClient
+import com.kirkbushman.redgifs.models.Redgif
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 
 class GetRedgifsActivity : BaseSearchPrintActivity<Redgif?>() {
@@ -16,8 +17,12 @@ class GetRedgifsActivity : BaseSearchPrintActivity<Redgif?>() {
         }
     }
 
-    override fun fetchItem(client: GfycatClient, query: String): Redgif? {
+    override fun fetchItem(
+        gfycatClient: GfycatClient,
+        redgifsClient: RedgifsClient,
+        query: String
+    ): Redgif? {
 
-        return client.redgifs(query)
+        return redgifsClient.redgifs(query)
     }
 }

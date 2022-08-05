@@ -23,7 +23,7 @@ class SearchStickersActivity : AppCompatActivity() {
 
     private val items = ArrayList<Gfycat>()
 
-    private val client by lazy { GfycatApplication.instance?.getClient() }
+    private val client by lazy { GfycatApplication.instance?.getGfycatClient() }
     private val controller by lazy {
         GfycatController(object : OnClickCallback {
 

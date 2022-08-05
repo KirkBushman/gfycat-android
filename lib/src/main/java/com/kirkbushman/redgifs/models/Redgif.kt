@@ -1,4 +1,4 @@
-package com.kirkbushman.gfycat.models
+package com.kirkbushman.redgifs.models
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

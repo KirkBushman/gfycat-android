@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.models.Gfycat
+import com.kirkbushman.redgifs.RedgifsClient
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 
 class GetGfycatActivity : BaseSearchPrintActivity<Gfycat?>() {
@@ -16,8 +17,12 @@ class GetGfycatActivity : BaseSearchPrintActivity<Gfycat?>() {
         }
     }
 
-    override fun fetchItem(client: GfycatClient, query: String): Gfycat? {
+    override fun fetchItem(
+        gfycatClient: GfycatClient,
+        redgifsClient: RedgifsClient,
+        query: String
+    ): Gfycat? {
 
-        return client.gfycat(query)
+        return gfycatClient.gfycat(query)
     }
 }

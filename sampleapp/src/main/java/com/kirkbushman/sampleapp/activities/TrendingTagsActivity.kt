@@ -22,7 +22,7 @@ class TrendingTagsActivity : AppCompatActivity() {
 
     private val items = ArrayList<String>()
 
-    private val client by lazy { GfycatApplication.instance?.getClient() }
+    private val client by lazy { GfycatApplication.instance?.getGfycatClient() }
     private val controller by lazy {
         TagsController(object : OnClickCallback {
 

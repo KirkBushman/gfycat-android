@@ -1,7 +1,7 @@
-package com.kirkbushman.gfycat.models.envelopes
+package com.kirkbushman.redgifs.models.envelopes
 
 import android.os.Parcelable
-import com.kirkbushman.gfycat.models.Redgif
+import com.kirkbushman.redgifs.models.Redgif
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize

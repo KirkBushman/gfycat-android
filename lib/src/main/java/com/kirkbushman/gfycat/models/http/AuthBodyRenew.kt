@@ -12,4 +12,5 @@ data class AuthBodyRenew(
     val client_secret: String,
     val refresh_token: String,
     val grant_type: String
+
 ) : Parcelable
