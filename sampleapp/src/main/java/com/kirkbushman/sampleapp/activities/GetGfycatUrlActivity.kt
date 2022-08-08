@@ -7,7 +7,10 @@ import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.models.Gfycat
 import com.kirkbushman.redgifs.RedgifsClient
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GetGfycatUrlActivity : BaseSearchPrintActivity<Gfycat?>() {
 
     companion object {
@@ -18,12 +21,11 @@ class GetGfycatUrlActivity : BaseSearchPrintActivity<Gfycat?>() {
         }
     }
 
-    override fun fetchItem(
-        gfycatClient: GfycatClient,
-        redgifsClient: RedgifsClient,
-        query: String
-    ): Gfycat? {
+    @Inject
+    lateinit var client: GfycatClient
 
-        return gfycatClient.gfycatFromUrl(query.toUri())
+    override fun fetchItem(query: String): Gfycat? {
+
+        return client.gfycatFromUrl(query.toUri())
     }
 }

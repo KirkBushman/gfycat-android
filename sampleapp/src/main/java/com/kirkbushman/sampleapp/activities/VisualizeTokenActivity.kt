@@ -18,8 +18,6 @@ class VisualizeTokenActivity : AppCompatActivity() {
         }
     }
 
-    private val bearer by lazy { GfycatApplication.instance?.getTokenBearer() }
-
     private lateinit var binding: ActivityVisualizeTokenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +26,7 @@ class VisualizeTokenActivity : AppCompatActivity() {
         binding = ActivityVisualizeTokenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tokenRefresh.setOnClickListener {
+        /*binding.tokenRefresh.setOnClickListener {
 
             doAsync(
                 doWork = { bearer?.renewToken() },
@@ -39,6 +37,8 @@ class VisualizeTokenActivity : AppCompatActivity() {
             )
         }
 
-        binding.tokenText.text = bearer.toString()
+        binding.tokenText.text = bearer.toString()*/
+
+        // todo come back and fix this
     }
 }

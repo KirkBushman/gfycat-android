@@ -10,4 +10,5 @@ data class ClientCredentials(
     override val clientSecret: String,
 
     override val grantType: String = "client_credentials"
+
 ) : Parcelable, Credentials

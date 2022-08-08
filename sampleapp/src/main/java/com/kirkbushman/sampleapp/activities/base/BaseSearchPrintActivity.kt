@@ -9,12 +9,9 @@ import com.kirkbushman.sampleapp.utils.doAsync
 
 abstract class BaseSearchPrintActivity<T> : BaseActivity() {
 
-    private val gfycatClient by lazy { GfycatApplication.instance?.getGfycatClient() }
-    private val redgifsClient by lazy { GfycatApplication.instance?.getRedgifsClient() }
-
     private var item: T? = null
 
-    abstract fun fetchItem(gfycatClient: GfycatClient, redgifsClient: RedgifsClient, query: String): T
+    abstract fun fetchItem(query: String): T
 
     private lateinit var binding: ActivitySearchPrintBinding
 
@@ -35,7 +32,7 @@ abstract class BaseSearchPrintActivity<T> : BaseActivity() {
             val query = binding.query.text.trim().toString()
 
             doAsync(
-                doWork = { item = fetchItem(gfycatClient!!, redgifsClient!!, query) },
+                doWork = { item = fetchItem(query) },
                 onPost = { binding.objText.text = item.toString() }
             )
         }

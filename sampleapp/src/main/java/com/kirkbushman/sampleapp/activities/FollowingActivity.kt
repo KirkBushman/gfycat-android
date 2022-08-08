@@ -5,7 +5,10 @@ import android.content.Intent
 import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.models.Following
 import com.kirkbushman.sampleapp.activities.base.BaseTextPrintActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FollowingActivity : BaseTextPrintActivity<Following?>() {
 
     companion object {
@@ -16,7 +19,10 @@ class FollowingActivity : BaseTextPrintActivity<Following?>() {
         }
     }
 
-    override fun fetchItem(client: GfycatClient): Following? {
+    @Inject
+    lateinit var client: GfycatClient
+
+    override fun fetchItem(): Following? {
 
         return client.following()
     }

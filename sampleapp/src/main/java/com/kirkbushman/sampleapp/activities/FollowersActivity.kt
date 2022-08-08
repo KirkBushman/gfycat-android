@@ -5,6 +5,7 @@ import android.content.Intent
 import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.models.Followers
 import com.kirkbushman.sampleapp.activities.base.BaseTextPrintActivity
+import javax.inject.Inject
 
 class FollowersActivity : BaseTextPrintActivity<Followers?>() {
 
@@ -16,7 +17,10 @@ class FollowersActivity : BaseTextPrintActivity<Followers?>() {
         }
     }
 
-    override fun fetchItem(client: GfycatClient): Followers? {
+    @Inject
+    lateinit var client: GfycatClient
+
+    override fun fetchItem(): Followers? {
 
         return client.followers()
     }

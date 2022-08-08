@@ -8,11 +8,9 @@ import com.kirkbushman.sampleapp.utils.doAsync
 
 abstract class BaseTextPrintActivity<T> : BaseActivity() {
 
-    private val client by lazy { GfycatApplication.instance?.getGfycatClient() }
-
     private var item: T? = null
 
-    abstract fun fetchItem(client: GfycatClient): T
+    abstract fun fetchItem(): T
 
     private lateinit var binding: ActivityTextPrintBinding
 
@@ -29,7 +27,7 @@ abstract class BaseTextPrintActivity<T> : BaseActivity() {
         }
 
         doAsync(
-            doWork = { item = fetchItem(client!!) },
+            doWork = { item = fetchItem() },
             onPost = { binding.objText.text = item.toString() }
         )
     }

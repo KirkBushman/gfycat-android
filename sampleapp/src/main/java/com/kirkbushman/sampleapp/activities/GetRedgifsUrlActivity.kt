@@ -7,7 +7,10 @@ import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.redgifs.RedgifsClient
 import com.kirkbushman.redgifs.models.Redgif
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GetRedgifsUrlActivity : BaseSearchPrintActivity<Redgif?>() {
 
     companion object {
@@ -18,11 +21,10 @@ class GetRedgifsUrlActivity : BaseSearchPrintActivity<Redgif?>() {
         }
     }
 
-    override fun fetchItem(
-        gfycatClient: GfycatClient,
-        redgifsClient: RedgifsClient,
-        query: String
-    ): Redgif? {
+    @Inject
+    lateinit var redgifsClient: RedgifsClient
+
+    override fun fetchItem(query: String): Redgif? {
 
         return redgifsClient.redgifsFromUrl(query.toUri())
     }

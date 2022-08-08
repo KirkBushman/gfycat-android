@@ -4,12 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.sampleapp.GfycatApplication
 import com.kirkbushman.sampleapp.controllers.OnClickCallback
 import com.kirkbushman.sampleapp.controllers.TagsController
 import com.kirkbushman.sampleapp.databinding.ActivityTrendingTagsBinding
 import com.kirkbushman.sampleapp.utils.doAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TrendingTagsActivity : AppCompatActivity() {
 
     companion object {
@@ -20,9 +24,11 @@ class TrendingTagsActivity : AppCompatActivity() {
         }
     }
 
+    @Inject
+    lateinit var client: GfycatClient
+
     private val items = ArrayList<String>()
 
-    private val client by lazy { GfycatApplication.instance?.getGfycatClient() }
     private val controller by lazy {
         TagsController(object : OnClickCallback {
 
@@ -42,7 +48,7 @@ class TrendingTagsActivity : AppCompatActivity() {
         binding.list.setController(controller)
 
         doAsync(
-            doWork = { items.addAll(client?.trendingTags(tagCount = 30) ?: listOf()) },
+            doWork = { items.addAll(client.trendingTags(tagCount = 30) ?: listOf()) },
             onPost = {
 
                 controller.setItems(items)

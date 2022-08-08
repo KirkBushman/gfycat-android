@@ -1,16 +1,14 @@
 package com.kirkbushman.gfycat.auth
 
-import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.managers.StorageManager
-import com.kirkbushman.gfycat.models.http.AuthBodyRenew
 
 data class TokenBearer(
 
+    private val authManager: AuthManager,
     private val storManager: StorageManager,
-
     private var token: Token?,
-
     private val credentials: Credentials
+
 ) {
 
     init {
@@ -20,7 +18,7 @@ data class TokenBearer(
         }
     }
 
-    fun getRawAccessToken(): String? {
+    fun getRawAccessToken(): String {
 
         if (shouldRenew()) {
             renewToken()
@@ -30,7 +28,7 @@ data class TokenBearer(
     }
 
     fun getAuthHeader(): Map<String, String> {
-        return hashMapOf("Authorization" to "bearer ".plus(getRawAccessToken()))
+        return hashMapOf("Authorization" to "Bearer ".plus(getRawAccessToken()))
     }
 
     private fun shouldRenew(): Boolean {
@@ -43,17 +41,7 @@ data class TokenBearer(
             return
         }
 
-        val api = GfycatClient.getApi()
-        val req = api.refreshToken(
-            AuthBodyRenew(
-                client_id = credentials.clientId,
-                client_secret = credentials.clientSecret,
-                refresh_token = token?.refreshToken ?: "",
-                grant_type = "refresh"
-            )
-        )
-
-        val res = req.execute()
+        val res = authManager.refreshToken(token)
         val token = res.body()
 
         if (!res.isSuccessful || token == null) {

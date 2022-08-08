@@ -17,6 +17,9 @@ buildscript {
         kotlin_ver = '1.7.0'
         coroutines_ver = '1.6.4'
 
+        hilt_ver = "2.43.1"
+        ax_hilt_ver = "1.0.0"
+
         ax_core_ver = '1.8.0'
         ax_appcompat_ver = '1.5.0-rc01'
         ax_activity_ver = '1.5.1'
@@ -40,6 +43,8 @@ buildscript {
     }
 
     dependencies {
+
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_ver"
         classpath "com.android.tools.build:gradle:${android_gradle_ver}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver"
         // NOTE: Do not place your application dependencies here; they belong

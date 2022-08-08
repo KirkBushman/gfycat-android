@@ -3,6 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.plugin.parcelize"
     id "org.jetbrains.kotlin.kapt"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -43,6 +44,10 @@ android {
 dependencies {
 
     implementation project(":lib")
+
+    implementation "com.google.dagger:hilt-android:$hilt_ver"
+    kapt "androidx.hilt:hilt-compiler:$ax_hilt_ver"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_ver"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_ver"

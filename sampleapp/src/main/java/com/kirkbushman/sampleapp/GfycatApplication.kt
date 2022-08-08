@@ -1,12 +1,14 @@
 package com.kirkbushman.sampleapp
 
 import android.app.Application
-import com.kirkbushman.gfycat.GfycatClient
 import com.kirkbushman.gfycat.auth.*
 import com.kirkbushman.gfycat.managers.SharedPrefsStorageManager
-import com.kirkbushman.redgifs.RedgifsClient
-import org.xmlpull.v1.XmlPullParser
+import com.kirkbushman.redgifs.auth.RedgifsAuthManager
+import com.kirkbushman.sampleapp.di.Module
+import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
+@HiltAndroidApp
 class GfycatApplication : Application() {
 
     companion object {
@@ -16,31 +18,10 @@ class GfycatApplication : Application() {
         var instance: GfycatApplication? = null
     }
 
-    private var bearer: TokenBearer? = null
-    private var gfycatClient: GfycatClient? = null
-
-    private var redgifsClient: RedgifsClient? = null
-
-    fun loadClients() {
-
-        val creds = loadCredsFromXmlFile()
-        val auth = AuthManager(creds, LOGGING)
-
-        bearer = auth.getAuthToken(SharedPrefsStorageManager(this))
-        gfycatClient = auth.getGfycatClient(bearer!!)
-    }
-
-    fun getTokenBearer(): TokenBearer? {
-        return bearer
-    }
-
-    fun getGfycatClient(): GfycatClient? {
-        return gfycatClient
-    }
-
-    fun getRedgifsClient(): RedgifsClient? {
-        return redgifsClient
-    }
+    @Inject
+    lateinit var creds: Credentials
+    @Inject
+    lateinit var clientCreds: ClientCredentials
 
     override fun onCreate() {
         super.onCreate()
@@ -48,38 +29,18 @@ class GfycatApplication : Application() {
         instance = this
     }
 
-    private fun loadCredsFromXmlFile(): Credentials {
-        val xpp = resources.getXml(R.xml.credentials)
+    fun loadClients() {
 
-        var usePasswordAuth = true
-        var clientId = ""
-        var clientSecret = ""
-        var username = ""
-        var password = ""
+        val gfycatAuth = GfycatAuthManager(creds, LOGGING)
+        val gfycatBearer = gfycatAuth.getAuthToken(SharedPrefsStorageManager(this))
+        val gfycatClient = gfycatAuth.getGfycatClient(gfycatBearer)
 
-        while (xpp.eventType != XmlPullParser.END_DOCUMENT) {
+        Module.setGfycatClient(gfycatClient)
 
-            when (xpp.eventType) {
+        val redgifsAuth = RedgifsAuthManager(clientCreds, LOGGING)
+        val redgifsBearer = redgifsAuth.getAuthToken(SharedPrefsStorageManager(this))
+        val redgifsClient = redgifsAuth.getRedgifsClient(redgifsBearer)
 
-                XmlPullParser.START_TAG -> {
-
-                    when (xpp.name) {
-                        "usePasswordAuth" -> usePasswordAuth = xpp.nextText()!!.toBoolean()
-                        "clientId" -> clientId = xpp.nextText()
-                        "clientSecret" -> clientSecret = xpp.nextText()
-                        "username" -> username = xpp.nextText()
-                        "password" -> password = xpp.nextText()
-                    }
-                }
-            }
-
-            xpp.next()
-        }
-
-        return if (usePasswordAuth) {
-            PasswordCredentials(clientId, clientSecret, username, password)
-        } else {
-            ClientCredentials(clientId, clientSecret)
-        }
+        Module.setRedgifsClient(redgifsClient)
     }
 }
