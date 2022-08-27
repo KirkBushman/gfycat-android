@@ -64,7 +64,7 @@ object Module {
 
     @Provides
     @Reusable
-    fun provideClientCredentials(
+    fun provideRedgifsCredentials(
 
         @ApplicationContext context: Context
 
@@ -82,8 +82,8 @@ object Module {
                 XmlPullParser.START_TAG -> {
 
                     when (xpp.name) {
-                        "clientId" -> clientId = xpp.nextText()
-                        "clientSecret" -> clientSecret = xpp.nextText()
+                        "redClientId" -> clientId = xpp.nextText()
+                        "redClientSecret" -> clientSecret = xpp.nextText()
                     }
                 }
             }

@@ -18,9 +18,14 @@ class MainActivity : AppCompatActivity() {
 
         doAsync(doWork = { GfycatApplication.instance?.loadClients() })
 
-        binding.bttnVisualizeToken.setOnClickListener {
+        binding.bttnVisualizeGfycatToken.setOnClickListener {
 
-            VisualizeTokenActivity.start(this)
+            VisualizeGfycatTokenActivity.start(this)
+        }
+
+        binding.bttnVisualizeRedgifsToken.setOnClickListener {
+
+            VisualizeRedgifsTokenActivity.start(this)
         }
 
         binding.bttnGetGfycats.setOnClickListener {

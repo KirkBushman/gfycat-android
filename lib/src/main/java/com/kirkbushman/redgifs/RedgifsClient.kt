@@ -1,12 +1,12 @@
 package com.kirkbushman.redgifs
 
 import android.net.Uri
-import com.kirkbushman.gfycat.auth.TokenBearer
 import com.kirkbushman.gfycat.utils.Utils
+import com.kirkbushman.redgifs.auth.TokenBearer
 import com.kirkbushman.redgifs.models.Redgif
 import retrofit2.Retrofit
 
-class RedgifsClient(private val bearer: TokenBearer, logging: Boolean) {
+class RedgifsClient(val bearer: TokenBearer, logging: Boolean) {
 
     companion object {
 

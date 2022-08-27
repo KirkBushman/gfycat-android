@@ -1,4 +1,4 @@
-package com.kirkbushman.gfycat.models.http
+package com.kirkbushman.redgifs.models.http
 
 import android.os.Parcelable
 import com.squareup.moshi.JsonClass
@@ -11,5 +11,5 @@ data class AuthBodyClient(
     val client_id: String,
     val client_secret: String,
     val grant_type: String
-
+    
 ) : Parcelable

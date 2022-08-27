@@ -1,14 +1,12 @@
 package com.kirkbushman.redgifs.auth
 
-import com.kirkbushman.gfycat.GfycatClient
-import com.kirkbushman.gfycat.auth.AuthManager
+import android.util.Log
 import com.kirkbushman.gfycat.auth.ClientCredentials
-import com.kirkbushman.gfycat.auth.Token
-import com.kirkbushman.gfycat.auth.TokenBearer
-import com.kirkbushman.gfycat.managers.StorageManager
-import com.kirkbushman.gfycat.models.http.AuthBodyClient
-import com.kirkbushman.gfycat.models.http.AuthBodyRenew
+import com.kirkbushman.redgifs.managers.StorageManager
 import com.kirkbushman.redgifs.RedgifsClient
+import com.kirkbushman.redgifs.models.http.AuthBodyClient
+import com.kirkbushman.redgifs.models.http.AuthBodyRenew
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 class RedgifsAuthManager(
@@ -25,14 +23,11 @@ class RedgifsAuthManager(
             return TokenBearer(this, storManager, storManager.getToken(), credentials)
         } else {
 
-            // val api = RedgifsClient.getApi(logging)
-            val api = GfycatClient.getApi(logging)
+            val api = RedgifsClient.getApi(logging)
             val req = api.getAuthToken(
-                AuthBodyClient(
-                    credentials.clientId,
-                    credentials.clientSecret,
-                    credentials.grantType
-                )
+                clientId = credentials.clientId,
+                clientSecret = credentials.clientSecret,
+                grantType = credentials.grantType
             )
 
             val res = req.execute()
@@ -48,7 +43,7 @@ class RedgifsAuthManager(
 
     override fun refreshToken(token: Token?): Response<Token> {
 
-        val api = GfycatClient.getApi()
+        val api = RedgifsClient.getApi()
         val req = api.refreshToken(
             AuthBodyRenew(
                 client_id = credentials.clientId,

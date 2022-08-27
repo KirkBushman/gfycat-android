@@ -2,7 +2,6 @@ package com.kirkbushman.sampleapp
 
 import android.app.Application
 import com.kirkbushman.gfycat.auth.*
-import com.kirkbushman.gfycat.managers.SharedPrefsStorageManager
 import com.kirkbushman.redgifs.auth.RedgifsAuthManager
 import com.kirkbushman.sampleapp.di.Module
 import dagger.hilt.android.HiltAndroidApp
@@ -19,9 +18,9 @@ class GfycatApplication : Application() {
     }
 
     @Inject
-    lateinit var creds: Credentials
+    lateinit var gfycatCreds: Credentials
     @Inject
-    lateinit var clientCreds: ClientCredentials
+    lateinit var redgifsCreds: ClientCredentials
 
     override fun onCreate() {
         super.onCreate()
@@ -31,14 +30,14 @@ class GfycatApplication : Application() {
 
     fun loadClients() {
 
-        val gfycatAuth = GfycatAuthManager(creds, LOGGING)
-        val gfycatBearer = gfycatAuth.getAuthToken(SharedPrefsStorageManager(this))
+        val gfycatAuth = GfycatAuthManager(gfycatCreds, LOGGING)
+        val gfycatBearer = gfycatAuth.getAuthToken(com.kirkbushman.gfycat.managers.SharedPrefsStorageManager(this))
         val gfycatClient = gfycatAuth.getGfycatClient(gfycatBearer)
 
         Module.setGfycatClient(gfycatClient)
 
-        val redgifsAuth = RedgifsAuthManager(clientCreds, LOGGING)
-        val redgifsBearer = redgifsAuth.getAuthToken(SharedPrefsStorageManager(this))
+        val redgifsAuth = RedgifsAuthManager(redgifsCreds, LOGGING)
+        val redgifsBearer = redgifsAuth.getAuthToken(com.kirkbushman.redgifs.managers.SharedPrefsStorageManager(this))
         val redgifsClient = redgifsAuth.getRedgifsClient(redgifsBearer)
 
         Module.setRedgifsClient(redgifsClient)

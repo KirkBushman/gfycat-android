@@ -30,11 +30,19 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/bttn_visualize_token"
+                android:id="@+id/bttn_visualize_gfycat_token"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/bttn_visualize_token"
+                android:text="@string/bttn_visualize_gfycat_token"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_visualize_redgifs_token"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_visualize_redgifs_token"
                 />
 
             <com.google.android.material.button.MaterialButton

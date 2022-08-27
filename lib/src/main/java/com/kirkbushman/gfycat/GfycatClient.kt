@@ -7,7 +7,7 @@ import com.kirkbushman.gfycat.utils.Utils
 import com.kirkbushman.gfycat.utils.Utils.getGfyIdFromUrl
 import retrofit2.Retrofit
 
-class GfycatClient(private val bearer: TokenBearer, logging: Boolean) {
+class GfycatClient(val bearer: TokenBearer, logging: Boolean) {
 
     companion object {
 

@@ -1,13 +1,24 @@
 package com.kirkbushman.redgifs
 
+import com.kirkbushman.redgifs.auth.Token
 import com.kirkbushman.redgifs.models.envelopes.RedgifEnvelope
+import com.kirkbushman.redgifs.models.http.AuthBodyRenew
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.HeaderMap
-import retrofit2.http.Path
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface RedgifsApi {
+
+    @FormUrlEncoded
+    @POST("/v2/oauth/client")
+    fun getAuthToken(
+        @Field("grant_type") grantType: String,
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String
+    ): Call<Token>
+
+    @FormUrlEncoded
+    @POST("/v2/oauth/client")
+    fun refreshToken(@Body request: AuthBodyRenew): Call<Token>
 
     @GET("/v2/gifs/{gifId}")
     fun redgifs(
