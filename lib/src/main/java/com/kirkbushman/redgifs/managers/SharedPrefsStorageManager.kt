@@ -14,9 +14,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
 
         private const val LAST_TOKEN_TYPE = "android_redgifs_oauth2_current_token_type"
         private const val LAST_SCOPE = "android_redgifs_oauth2_current_scope"
-        private const val LAST_RESOURCE_OWNER = "android_redgifs_oauth2_current_owner"
-        private const val LAST_REFRESH_TOKEN = "android_redgifs_oauth2_current_refresh_token"
-        private const val LAST_REFRESH_EXPIRES_IN = "android_redgifs_oauth2_current_refresh_expires_in"
         private const val LAST_ACCESS_TOKEN = "android_redgifs_oauth2_current_access_token"
         private const val LAST_EXPIRES_IN = "android_redgifs_oauth2_current_expires_in"
         private const val LAST_CREATED_TIME = "android_redgifs_oauth2_current_created_time"
@@ -30,9 +27,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
 
     override fun hasToken(): Boolean {
         return prefs.contains(LAST_ACCESS_TOKEN) &&
-            prefs.contains(LAST_RESOURCE_OWNER) &&
-            prefs.contains(LAST_REFRESH_TOKEN) &&
-            prefs.contains(LAST_REFRESH_EXPIRES_IN) &&
             prefs.contains(LAST_TOKEN_TYPE) &&
             prefs.contains(LAST_EXPIRES_IN) &&
             prefs.contains(LAST_SCOPE) &&
@@ -42,9 +36,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
     override fun getToken(): Token {
         if (
             !prefs.contains(LAST_ACCESS_TOKEN) ||
-            !prefs.contains(LAST_RESOURCE_OWNER) ||
-            !prefs.contains(LAST_REFRESH_TOKEN) ||
-            !prefs.contains(LAST_REFRESH_EXPIRES_IN) ||
             !prefs.contains(LAST_TOKEN_TYPE) ||
             !prefs.contains(LAST_EXPIRES_IN) ||
             !prefs.contains(LAST_SCOPE) ||
@@ -57,17 +48,11 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
         val accessToken = prefs.getString(LAST_ACCESS_TOKEN, "") as String
         val tokenType = prefs.getString(LAST_TOKEN_TYPE, "") as String
         val expiresIn = prefs.getInt(LAST_EXPIRES_IN, 0)
-        val resourceOwner = prefs.getString(LAST_RESOURCE_OWNER, null)
-        val refreshToken = prefs.getString(LAST_REFRESH_TOKEN, null)
-        val refreshExpiresIn = prefs.getInt(LAST_REFRESH_EXPIRES_IN, -1)
         val scope = prefs.getString(LAST_SCOPE, "") as String
         val createdTime = prefs.getLong(LAST_CREATED_TIME, 0L)
 
         return Token(
             tokenType = tokenType,
-            resourceOwner = resourceOwner,
-            refreshToken = refreshToken,
-            refreshTokenExpiresIn = if (refreshExpiresIn != -1) refreshExpiresIn else null,
             accessToken = accessToken,
             expiresIn = expiresIn,
             scope = scope,
@@ -84,9 +69,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
             }
 
             putString(LAST_TOKEN_TYPE, token.tokenType)
-            putString(LAST_RESOURCE_OWNER, token.resourceOwner)
-            putString(LAST_REFRESH_TOKEN, token.refreshToken)
-            putInt(LAST_REFRESH_EXPIRES_IN, token.refreshTokenExpiresIn ?: -1)
             putString(LAST_ACCESS_TOKEN, token.accessToken)
             putInt(LAST_EXPIRES_IN, token.expiresIn)
             putString(LAST_SCOPE, token.scope)
@@ -103,12 +85,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
 
             if (prefs.contains(LAST_TOKEN_TYPE))
                 this.remove(LAST_TOKEN_TYPE)
-            if (prefs.contains(LAST_RESOURCE_OWNER))
-                this.remove(LAST_RESOURCE_OWNER)
-            if (prefs.contains(LAST_REFRESH_TOKEN))
-                this.remove(LAST_REFRESH_TOKEN)
-            if (prefs.contains(LAST_REFRESH_EXPIRES_IN))
-                this.remove(LAST_REFRESH_EXPIRES_IN)
             if (prefs.contains(LAST_ACCESS_TOKEN))
                 this.remove(LAST_ACCESS_TOKEN)
             if (prefs.contains(LAST_EXPIRES_IN))

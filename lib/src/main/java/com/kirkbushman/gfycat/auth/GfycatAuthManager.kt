@@ -74,17 +74,39 @@ class GfycatAuthManager(
 
     override fun refreshToken(token: Token?): Response<Token> {
 
-        val api = GfycatClient.getApi()
-        val req = api.refreshToken(
-            AuthBodyRenew(
-                client_id = credentials.clientId,
-                client_secret = credentials.clientSecret,
-                refresh_token = token?.refreshToken ?: "",
-                grant_type = "refresh"
-            )
-        )
+        return when (credentials) {
 
-        return req.execute()
+            is PasswordCredentials -> {
+
+                val api = GfycatClient.getApi()
+                val req = api.refreshToken(
+                    AuthBodyRenew(
+                        client_id = credentials.clientId,
+                        client_secret = credentials.clientSecret,
+                        refresh_token = token?.refreshToken ?: "",
+                        grant_type = "refresh"
+                    )
+                )
+
+                req.execute()
+            }
+
+            is ClientCredentials -> {
+
+                val api = GfycatClient.getApi()
+                val req = api.getAuthToken(
+                    AuthBodyClient(
+                        credentials.clientId,
+                        credentials.clientSecret,
+                        credentials.grantType
+                    )
+                )
+
+                req.execute()
+            }
+
+            else -> throw IllegalStateException("Credentials type not found!")
+        }
     }
 
     fun getGfycatClient(bearer: TokenBearer): GfycatClient {

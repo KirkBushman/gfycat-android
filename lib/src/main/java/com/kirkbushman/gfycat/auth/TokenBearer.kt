@@ -37,7 +37,7 @@ data class TokenBearer(
 
     fun renewToken() {
 
-        if (token == null || token?.refreshToken == null) {
+        if (token == null) {
             return
         }
 

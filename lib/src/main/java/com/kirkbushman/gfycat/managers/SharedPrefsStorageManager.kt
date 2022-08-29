@@ -30,9 +30,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
 
     override fun hasToken(): Boolean {
         return prefs.contains(LAST_ACCESS_TOKEN) &&
-            prefs.contains(LAST_RESOURCE_OWNER) &&
-            prefs.contains(LAST_REFRESH_TOKEN) &&
-            prefs.contains(LAST_REFRESH_EXPIRES_IN) &&
             prefs.contains(LAST_TOKEN_TYPE) &&
             prefs.contains(LAST_EXPIRES_IN) &&
             prefs.contains(LAST_SCOPE) &&
@@ -42,9 +39,6 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
     override fun getToken(): Token {
         if (
             !prefs.contains(LAST_ACCESS_TOKEN) ||
-            !prefs.contains(LAST_RESOURCE_OWNER) ||
-            !prefs.contains(LAST_REFRESH_TOKEN) ||
-            !prefs.contains(LAST_REFRESH_EXPIRES_IN) ||
             !prefs.contains(LAST_TOKEN_TYPE) ||
             !prefs.contains(LAST_EXPIRES_IN) ||
             !prefs.contains(LAST_SCOPE) ||
