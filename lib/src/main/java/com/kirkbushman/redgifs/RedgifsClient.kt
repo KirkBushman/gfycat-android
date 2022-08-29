@@ -12,6 +12,7 @@ class RedgifsClient(val bearer: TokenBearer, logging: Boolean) {
 
         @Volatile
         private var retrofit: Retrofit? = null
+
         @Volatile
         private var api: RedgifsApi? = null
 
@@ -71,9 +72,7 @@ class RedgifsClient(val bearer: TokenBearer, logging: Boolean) {
 
             // some urls include other params after the '-' symbol,
             // remove them in order to get the id
-            gfyId = gfyId.replace(
-                gfyId.substring(gfyId.indexOfFirst { it == '-' }), ""
-            )
+            gfyId = gfyId.replace(gfyId.substring(gfyId.indexOfFirst { it == '-' }), "")
         }
 
         return redgifs(gfyId)

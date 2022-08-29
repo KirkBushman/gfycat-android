@@ -80,19 +80,24 @@ class SharedPrefsStorageManager(context: Context) : StorageManager {
 
         prefs.edit {
 
-            if (prefs.contains(IS_AUTHED))
+            if (prefs.contains(IS_AUTHED)) {
                 this.remove(IS_AUTHED)
-
-            if (prefs.contains(LAST_TOKEN_TYPE))
+            }
+            if (prefs.contains(LAST_TOKEN_TYPE)) {
                 this.remove(LAST_TOKEN_TYPE)
-            if (prefs.contains(LAST_ACCESS_TOKEN))
+            }
+            if (prefs.contains(LAST_ACCESS_TOKEN)) {
                 this.remove(LAST_ACCESS_TOKEN)
-            if (prefs.contains(LAST_EXPIRES_IN))
+            }
+            if (prefs.contains(LAST_EXPIRES_IN)) {
                 this.remove(LAST_EXPIRES_IN)
-            if (prefs.contains(LAST_SCOPE))
+            }
+            if (prefs.contains(LAST_SCOPE)) {
                 this.remove(LAST_SCOPE)
-            if (prefs.contains(LAST_CREATED_TIME))
+            }
+            if (prefs.contains(LAST_CREATED_TIME)) {
                 this.remove(LAST_CREATED_TIME)
+            }
         }
     }
 }

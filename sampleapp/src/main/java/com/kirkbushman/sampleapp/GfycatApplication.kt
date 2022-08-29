@@ -19,6 +19,7 @@ class GfycatApplication : Application() {
 
     @Inject
     lateinit var gfycatCreds: Credentials
+
     @Inject
     lateinit var redgifsCreds: ClientCredentials
 
